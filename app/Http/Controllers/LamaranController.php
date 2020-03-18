@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\lampiran;
 
 class LamaranController extends Controller
 {
@@ -13,8 +14,9 @@ class LamaranController extends Controller
      */
     public function index()
     {
+        $lampiran = lampiran::all();
         $halaman = "lamaran";
-        return view('lamaran', compact('halaman'));
+        return view('lamaran', compact('halaman','lampiran'));
     }
 
     /**
