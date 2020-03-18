@@ -34,7 +34,8 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" method = "POST" action = "/postlamaran">
+                            @csrf
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control form-control-user" id="nama" name="nama">
@@ -57,12 +58,10 @@
                                     <div class="col-sm-6">
                                         <label for="selesai">Tanggal Selesai</label>
                                         <input type="date" class="form-control form-control-user" id="selesai"
-                                            neme="selesai">
+                                            name="selesai">
                                     </div>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                              <button type="submit" class="btn btn-primary">Daftar</button>
                             </form>
                         </div>
                     </div>
