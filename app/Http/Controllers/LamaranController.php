@@ -13,7 +13,8 @@ class LamaranController extends Controller
      */
     public function index()
     {
-        return view('lamaran');
+        $halaman = "halaman";
+        return view('lamaran', compact('halaman'));
     }
 
     /**

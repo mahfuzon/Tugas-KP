@@ -34,7 +34,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -52,12 +52,21 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
+            @if(isset($halaman) && $halaman == 'lamaran')
+            <li class="nav-item active">
+                <a class="nav-link" href="/lamaran">
+                    <i class="fas fa-envelope"></i>
+                    <span>Submision</span>
+                </a>
+            </li>
+            @else
             <li class="nav-item">
                 <a class="nav-link" href="/lamaran">
                     <i class="fas fa-envelope"></i>
                     <span>Submision</span>
                 </a>
             </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
