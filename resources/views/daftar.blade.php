@@ -36,27 +36,28 @@
                             </div>
                             <form class="user">
                                 <div class="form-group">
-                                <label for="nama">Nama</label>
+                                    <label for="nama">Nama</label>
                                     <input type="text" class="form-control form-control-user" id="nama" name="nama">
                                 </div>
                                 <div class="form-group">
-                                <label for="asal_sekolah">Asal Sekolah</label>
-                                    <input type="text" class="form-control form-control-user" id="asal_sekolah" name="asal_sekolah">
+                                    <label for="asal_sekolah">Asal Sekolah</label>
+                                    <input type="text" class="form-control form-control-user" id="asal_sekolah"
+                                        name="asal_sekolah">
                                 </div>
                                 <div class="form-group">
-                                <label for="email">Email</label>
+                                    <label for="email">Email</label>
                                     <input type="email" class="form-control form-control-user" id="email" name="email">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <label for="mulai">Tanggal Mulai</label>
-                                        <input type="date" class="form-control form-control-user"
-                                            id="mulai" name="mulai">
+                                        <label for="mulai">Tanggal Mulai</label>
+                                        <input type="date" class="form-control form-control-user" id="mulai"
+                                            name="mulai">
                                     </div>
                                     <div class="col-sm-6">
-                                    <label for="selesai">Tanggal Selesai</label>
-                                        <input type="date" class="form-control form-control-user"
-                                            id="selesai" neme="selesai">
+                                        <label for="selesai">Tanggal Selesai</label>
+                                        <input type="date" class="form-control form-control-user" id="selesai"
+                                            neme="selesai">
                                     </div>
                                 </div>
                                 <a href="login.html" class="btn btn-primary btn-user btn-block">
