@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('title')
-<title>Lampiran</title>
+<title>Lamaran</title>
 @endsection
 
 @section('content')

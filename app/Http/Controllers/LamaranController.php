@@ -13,7 +13,7 @@ class LamaranController extends Controller
      */
     public function index()
     {
-        return view('lamaran.blade.php');
+        return view('lamaran');
     }
 
     /**
