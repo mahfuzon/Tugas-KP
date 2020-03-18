@@ -26,7 +26,7 @@ class LamaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('daftar.blade.php');
     }
 
     /**
