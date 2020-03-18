@@ -20,6 +20,7 @@ class CretateTableLampiran extends Migration
             $table->string('email')->unique();
             $table->date('mulai');
             $table->date('selesai');
+            $table->boolean('acc')->nullable();
             $table->timestamps();
         });
     }
