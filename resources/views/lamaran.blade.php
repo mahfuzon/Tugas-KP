@@ -28,11 +28,13 @@
                     </thead>
                     <tbody>
                         @foreach($lampiran as $lam)
+                        <tr>
                             <td>{{$lam->nama}}</td>
                             <td>{{$lam->asal_sekolah}}</td>
                             <td>{{$lam->email}}</td>
                             <td>{{$lam->mulai}}</td>
                             <td>{{$lam->selesai}}</td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
