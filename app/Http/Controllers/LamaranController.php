@@ -38,7 +38,9 @@ class LamaranController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        lampiran::create($input);
+        lampiran::create($input,[
+            'acc' => '0'
+        ]);
         return redirect('/lamaran');
     }
 
