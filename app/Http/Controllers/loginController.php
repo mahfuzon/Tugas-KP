@@ -21,7 +21,7 @@ class loginController extends Controller
         'name' => $request->nama,
         'email' => $request->email,
         'password' => Hash::make('12345'),
+        'level' => 'siswa'
     ]);
-
     }
 }
