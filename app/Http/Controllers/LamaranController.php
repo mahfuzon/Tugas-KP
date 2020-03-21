@@ -37,15 +37,25 @@ class LamaranController extends Controller
      */
     public function store(Request $request)
     {
-        lampiran::create([
-            'nama' => $request->nama,
-            'asal_sekolah' => $request->asal_sekolah,
-            'email' => $request->email,
-            'mulai' => $request->mulai,
-            'selesai' => $request->selesai,
-            'acc' => 0
-        ]);
-        return redirect('/lamaran');
+        $now = date('d-F-Y');
+        $mulai = date('d-F-Y', strtotime($request->mulai));
+        $selesai = date('d-F-Y', strtotime($request->selesai));
+        $selisih = $mulai->diff($selesai);
+        if($mulai < $now || $selesai < $now){
+            return redirect('/daftar');
+        }else if($selisih < 60){  
+            return redirect('/daftar');
+        }else{
+            $lampiran = new lampiran;
+            $lampiran->nama = $request->nama;
+            $lampiran->asal_sekolah = $request->asal_sekolah;
+            $lampiran->email = $request->email;
+            $lampiran->mulai = $request->mulai;
+            $lampiran->selesai = $request->selesai;  
+            $lampiran->acc = 0;
+            $lampiran->save();
+        }
+        return  redirect('/lamaran');
     }
 
     /**
