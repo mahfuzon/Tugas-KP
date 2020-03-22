@@ -37,10 +37,10 @@ class LamaranController extends Controller
      */
     public function store(Request $request)
     {
-        $now = date('d-F-Y');
-        $mulai = date('d-F-Y', strtotime($request->mulai));
-        $selesai = date('d-F-Y', strtotime($request->selesai));
-        $selisih = $mulai->diff($selesai);
+        $now = time();
+        $mulai = strtotime($request->mulai);
+        $selesai = strtotime($request->selesai);
+        $selisih = ($selesai - $mulai)/86400;
         if($mulai < $now || $selesai < $now){
             return redirect('/daftar');
         }else if($selisih < 60){  
@@ -55,7 +55,7 @@ class LamaranController extends Controller
             $lampiran->acc = 0;
             $lampiran->save();
         }
-        return  redirect('/lamaran');
+        return redirect('/lamaran');
     }
 
     /**
