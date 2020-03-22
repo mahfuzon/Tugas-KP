@@ -8,4 +8,7 @@ class lampiran extends Model
 {
     protected $table = 'lampiran';
     protected $fillable = ['nama','email','mulai','selesai', 'asal_sekolah', 'acc'];
+
+    protected $dates = ['mulai', 'selesai'];
+    
 }
