@@ -39,27 +39,27 @@
                             @csrf
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" class="form-control form-control-user" id="nama" name="nama">
+                                    <input type="text" class="form-control form-control-user" id="nama" name="nama" value="{{ old('nama') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah">Asal Sekolah</label>
                                     <input type="text" class="form-control form-control-user" id="asal_sekolah"
-                                        name="asal_sekolah">
+                                        name="asal_sekolah" value="{{ old('asal_sekolah') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control form-control-user" id="email" name="email">
+                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="mulai">Tanggal Mulai</label>
                                         <input type="date" class="form-control form-control-user" id="mulai"
-                                            name="mulai">
+                                            name="mulai" value="{{ old('mulai') }}">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="selesai">Tanggal Selesai</label>
                                         <input type="date" class="form-control form-control-user" id="selesai"
-                                            name="selesai">
+                                            name="selesai" value="{{ old('selesai') }}">
                                     </div>
                                 </div>
                               <button type="submit" class="btn btn-primary">Daftar</button>
