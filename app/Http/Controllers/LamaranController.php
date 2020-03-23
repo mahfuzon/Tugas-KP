@@ -53,16 +53,26 @@ class LamaranController extends Controller
             return redirect ('/daftar')->withInput()->withErrors($validator);
         }
 
+        $date = date('Y-m-d');
+        $mulai_daftar = $request->mulai;
+        $selesai_kp = $request->selesai;
         $now = time();
         $mulai = strtotime($request->mulai);
         $selesai = strtotime($request->selesai);
         $selisih = ($selesai - $mulai)/86400;
-        if($mulai < $now || $selesai < $now){
+        if($mulai_daftar < $date || $selesai_kp < $date){
             return redirect('/daftar');
         }else if($selisih < 60){  
             return redirect('/daftar');
         }else{
-            lampiran::create($input);
+            $lampiran = new lampiran;
+            $lampiran->nama = $request->nama;
+            $lampiran->asal_sekolah = $request->asal_sekolah;
+            $lampiran->email = $request->email;
+            $lampiran->mulai = $request->mulai;
+            $lampiran->selesai = $request->selesai;  
+            $lampiran->acc = 0;
+            $lampiran->save();
         }
         return redirect('/lamaran');
     }
