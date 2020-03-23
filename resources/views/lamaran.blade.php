@@ -32,8 +32,8 @@
                             <td>{{$lam->nama}}</td>
                             <td>{{$lam->asal_sekolah}}</td>
                             <td>{{$lam->email}}</td>
-                            <td>{{$lam->mulai->format('d-F-Y')}}</td>
-                            <td>{{$lam->selesai}}</td>
+                            <td>{{$lam->mulai->format('d-M-Y')}}</td>
+                            <td>{{$lam->selesai->format('d-M-Y')}}</td>
                             <td>
                                 <form action="/postAccount/{{$lam->id}}" method="POST">
                                 @csrf
