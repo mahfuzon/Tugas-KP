@@ -35,10 +35,14 @@
                             <td>{{$lam->mulai->format('d-M-Y')}}</td>
                             <td>{{$lam->selesai->format('d-M-Y')}}</td>
                             <td>
+                            @if($lam->acc == 0)
                                 <form action="/postAccount/{{$lam->id}}" method="POST">
                                 @csrf
                                     <input type="submit" name="submit" value="Accept" class="btn btn-success btn-sm">
                                 </form>
+                            @else
+                                <p>acc</p>
+                            @endif
                             </td>
                         </tr>
                         @endforeach
