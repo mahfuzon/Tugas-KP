@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\lampiran;
+use Validator;
 
 class LamaranController extends Controller
 {
@@ -37,6 +38,21 @@ class LamaranController extends Controller
      */
     public function store(Request $request)
     {
+        $input = $request->all();
+
+        // Validator
+        $validator = Validator::make($input, [
+            'nama' => 'required|string|max:30',
+            'asal_sekolah' => 'required|string',
+            'email' => 'required|email',
+            'mulai' => 'required|date',
+            'selesai' => 'required|date'
+        ]);
+
+        if($validator->fails()){
+            return redirect ('/daftar')->withInput()->withErrors($validator);
+        }
+
         $now = time();
         $mulai = strtotime($request->mulai);
         $selesai = strtotime($request->selesai);
@@ -46,14 +62,7 @@ class LamaranController extends Controller
         }else if($selisih < 60){  
             return redirect('/daftar');
         }else{
-            $lampiran = new lampiran;
-            $lampiran->nama = $request->nama;
-            $lampiran->asal_sekolah = $request->asal_sekolah;
-            $lampiran->email = $request->email;
-            $lampiran->mulai = $request->mulai;
-            $lampiran->selesai = $request->selesai;  
-            $lampiran->acc = 0;
-            $lampiran->save();
+            lampiran::create($input);
         }
         return redirect('/lamaran');
     }
