@@ -20,6 +20,8 @@ class loginController extends Controller
     public function postAccount($id){
         $lampirans = lampiran::all();
         $lampiran = $lampirans->find($id);
+        $lampiran->acc = 1;
+        $lampiran->save();
         User::create([
             'name' => $lampiran->nama,
             'email' => $lampiran->email,

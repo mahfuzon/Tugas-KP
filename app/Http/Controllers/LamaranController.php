@@ -63,10 +63,10 @@ class LamaranController extends Controller
         $selisih = ($selesai - $mulai)/86400;
         if($mulai_daftar < $date || $selesai_kp < $date){
             Session::flash('flash_message', 'inputkan tanggal yang sesuai');
-            return redirect('/daftar');
+            return redirect('/daftar')->withInput();
         }else if($selisih < 60){  
             Session::flash('flash_message', 'Magang minimal 2 bulan');
-            return redirect('/daftar');
+            return redirect('/daftar')->withInput();
         }else{
             $lampiran = new lampiran;
             $lampiran->nama = $request->nama;
@@ -77,7 +77,7 @@ class LamaranController extends Controller
             $lampiran->acc = 0;
             $lampiran->save();
         }
-        return redirect('/lamaran');
+        return redirect('/login');
     }
 
     /**
