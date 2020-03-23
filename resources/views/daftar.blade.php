@@ -34,6 +34,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
+                            @include('flash_message')
                             @include('errors')
                             <form class="user" method = "POST" action = "/postlamaran">
                             @csrf

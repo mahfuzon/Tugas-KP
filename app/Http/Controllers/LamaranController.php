@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\lampiran;
 use Validator;
+use Session;
 
 class LamaranController extends Controller
 {
@@ -61,8 +62,10 @@ class LamaranController extends Controller
         $selesai = strtotime($request->selesai);
         $selisih = ($selesai - $mulai)/86400;
         if($mulai_daftar < $date || $selesai_kp < $date){
+            Session::flash('flash_message', 'inputkan tanggal yang sesuai');
             return redirect('/daftar');
         }else if($selisih < 60){  
+            Session::flash('flash_message', 'Magang minimal 2 bulan');
             return redirect('/daftar');
         }else{
             $lampiran = new lampiran;
