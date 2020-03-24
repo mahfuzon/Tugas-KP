@@ -19,6 +19,8 @@ class User extends Authenticatable
         'name', 'email', 'password', 'level', 'mulai', 'selesai', 'asal_sekolah'
     ];
 
+    protected $dates = ['mulai', 'selesai'];
+
     /**
      * The attributes that should be hidden for arrays.
      *

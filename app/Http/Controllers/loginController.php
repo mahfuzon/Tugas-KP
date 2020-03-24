@@ -35,11 +35,12 @@ class loginController extends Controller
         $user = User::all();
         $halaman = 'peserta';
         $now = date('Y-m=d');
-        $keluar = $user->where('selesai', $now);
+        $keluar = User::where('selesai', $now)->get();
         foreach($keluar as $kel){
             $kel->delete();
         }
 
+        // return view('/peserta');
         return view('peserta', compact('user'));
     }
 }

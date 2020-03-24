@@ -26,7 +26,7 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    @if(isset($user && $user->level == 'siswa'))
+                    @if(isset($user))
                     <tbody>
                         @foreach($user as $u)
                         <tr>
@@ -35,10 +35,12 @@
                             <td>{{$u->asal_sekolah}}</td>
                             <td>{{$u->mulai->format('d-M-Y')}}</td>
                             <td>{{$u->selesai->format('d-M-Y')}}</td>
-                            <td></td>
                         </tr>
                         @endforeach
                     </tbody>
+                    @else
+                    <p>Data Not Found</p>
+                    @endif
                 </table>
             </div>
         </div>
