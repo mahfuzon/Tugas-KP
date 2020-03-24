@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('mulai')->nullable();
             $table->date('selesai')->nullable();
-            $table->string('asal_sekolah');
+            $table->string('asal_sekolah')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
