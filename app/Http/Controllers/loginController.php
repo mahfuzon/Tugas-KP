@@ -30,4 +30,16 @@ class loginController extends Controller
         ]);
         return redirect('/home');
     }
+
+    public function index(){
+        $user = User::all();
+        $halaman = 'peserta';
+        $now = date('Y-m=d');
+        $keluar = $user->where('selesai', $now);
+        foreach($keluar as $kel){
+            $kel->delete();
+        }
+
+        return view('peserta', compact('user'));
+    }
 }
