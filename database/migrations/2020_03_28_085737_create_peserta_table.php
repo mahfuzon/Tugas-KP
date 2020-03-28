@@ -14,7 +14,13 @@ class CreatePesertaTable extends Migration
     public function up()
     {
         Schema::create('peserta', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('user_id');
+            $table->bigInteger('lampiran_id');
+            $table->string('nama'); 
+            $table->string('asal_sekolah');
+            $table->string('email')->unique();
+            $table->date('mulai');
+            $table->date('selesai');
             $table->timestamps();
         });
     }

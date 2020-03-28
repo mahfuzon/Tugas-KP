@@ -21,7 +21,7 @@ class User extends Authenticatable
 
 
     public function peserta(){
-        return $this->hasOne('peserta');
+        return $this->hasOne('App\peserta');
     }
 
     /**

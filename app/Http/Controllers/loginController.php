@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\lampiran;
+use App\peserta;
 
 class loginController extends Controller
 {
@@ -22,25 +23,13 @@ class loginController extends Controller
         $lampiran = $lampirans->find($id);
         $lampiran->acc = 1;
         $lampiran->save();
-        User::create([
-            'name' => $lampiran->nama,
-            'email' => $lampiran->email,
-            'password' => Hash::make('12345'),
-            'level' => 'siswa'
+        peserta::create([
+            'lampiran_id' => $lampiran->id,
         ]);
         return redirect('/home');
     }
 
     public function index(){
-        $user = User::all();
-        $halaman = 'peserta';
-        $now = date('Y-m=d');
-        $keluar = User::where('selesai', $now)->get();
-        foreach($keluar as $kel){
-            $kel->delete();
-        }
-
-        // return view('/peserta');
-        return view('peserta', compact('user'));
+        
     }
 }

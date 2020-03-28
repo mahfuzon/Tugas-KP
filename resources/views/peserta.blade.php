@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('title')
-<title>Lamaran</title>
+<title>Peserta</title>
 @endsection
 
 @section('content')
@@ -23,18 +23,17 @@
                             <th>Email</th>
                             <th>Tanggal Mulai</th>
                             <th>Tanggal Selesai</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
-                    @if(isset($user))
+                    @if(isset($peserta))
                     <tbody>
-                        @foreach($user as $u)
+                        @foreach($peserta as $p)
                         <tr>
-                            <td>{{$u->name}}</td>
-                            <td>{{$u->email}}</td>
-                            <td>{{$u->asal_sekolah}}</td>
-                            <td>{{$u->mulai->format('d-M-Y')}}</td>
-                            <td>{{$u->selesai->format('d-M-Y')}}</td>
+                            <td>{{$p->lampiran->nama}}</td>
+                            <td>{{$p->lampiran->asal_sekolah}}</td>
+                            <td>{{$p->lampiran->email}}</td>
+                            <td>{{$p->lampiran->mulai->format('d-M-Y')}}</td>
+                            <td>{{$p->lampiran->selesai->format('d-M-Y')}}</td>
                         </tr>
                         @endforeach
                     </tbody>
