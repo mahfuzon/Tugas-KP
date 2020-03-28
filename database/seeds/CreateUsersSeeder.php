@@ -22,7 +22,7 @@ class CreateUsersSeeder extends Seeder
             [
                'name'=>'peserta',
                'email'=>'user@gmail.com',
-                'level'=>'pserta',
+                'level'=>'peserta',
                'password'=> bcrypt('user'),
             ],
         ];
