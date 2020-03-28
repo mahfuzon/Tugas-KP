@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\lampiran;
+use App\peserta;
 
 class pesertaController extends Controller
 {
@@ -14,14 +17,10 @@ class pesertaController extends Controller
     public function index()
     {
         $peserta = peserta::all();
-        $lampiran = lampiran::all();
         $halaman = 'peserta';
         $now = date('Y-m=d');
-        $keluar = lampiran::where('selesai', $now)->get();
-        if($peserta->lampiran->selesai = $now){
-            foreach($keluar as $kel){
-                $kel->delete();
-            }
+        $keluar = $peserta->where('selesai', $now)->get();
+        $keluar->delete();
         return view('peserta', compact('peserta'));
     }
 
@@ -41,9 +40,30 @@ class pesertaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function post($id)
     {
-        //
+        $lampirans = lampiran::all();
+        $lampiran = $lampirans->find($id);
+        $lampiran->acc = 1;
+        $lampiran->save();
+
+        $user = new \App\User;
+        $user->name = $lampiran->nama;
+        $user->email = $lampiran->email;
+        $user->password = bcrypt('12345');
+        $user->level = 'admin';
+        $user->save();
+
+        peserta::create([
+            'user_id' => $user->id,
+            'nama' => $lampiran->nama,
+            'asal_sekolah' => $lampiran->asal_sekolah,
+            'email' => $lampiran->email,
+            'mulai' => $lampiran->mulai,
+            'selesai' => $lampiran->selesai,
+            'lampiran_id' => $lampiran->id
+        ]);
+        return redirect('/home');
     }
 
     /**

@@ -29,11 +29,11 @@
                     <tbody>
                         @foreach($peserta as $p)
                         <tr>
-                            <td>{{$p->lampiran->nama}}</td>
-                            <td>{{$p->lampiran->asal_sekolah}}</td>
-                            <td>{{$p->lampiran->email}}</td>
-                            <td>{{$p->lampiran->mulai->format('d-M-Y')}}</td>
-                            <td>{{$p->lampiran->selesai->format('d-M-Y')}}</td>
+                            <td>{{$p->nama}}</td>
+                            <td>{{$p->asal_sekolah}}</td>
+                            <td>{{$p->email}}</td>
+                            <td>{{$p->mulai->format('d-M-Y')}}</td>
+                            <td>{{$p->selesai->format('d-M-Y')}}</td>
                         </tr>
                         @endforeach
                     </tbody>
