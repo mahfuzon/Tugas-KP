@@ -19,8 +19,11 @@ class pesertaController extends Controller
         $peserta = peserta::all();
         $halaman = 'peserta';
         $now = date('Y-m=d');
-        $keluar = $peserta->where('selesai', $now)->get();
-        $keluar->delete();
+        $peserta_keluar = peserta::where('selesai', $now)->get();
+        foreach ($peserta_keluar as $p) {
+            $p->delete();
+            User::where('id', $p->user_id)->delete();
+        }
         return view('peserta', compact('peserta'));
     }
 
