@@ -31,8 +31,8 @@
                         @foreach($user as $u)
                         <tr>
                             <td>{{$u->name}}</td>
-                            <td>{{$u->email}}</td>
                             <td>{{$u->asal_sekolah}}</td>
+                            <td>{{$u->email}}</td>
                             <td>{{$u->mulai->format('d-M-Y')}}</td>
                             <td>{{$u->selesai->format('d-M-Y')}}</td>
                         </tr>

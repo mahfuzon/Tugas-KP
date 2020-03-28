@@ -26,6 +26,9 @@ class loginController extends Controller
             'name' => $lampiran->nama,
             'email' => $lampiran->email,
             'password' => Hash::make('12345'),
+            'mulai' => $lampiran->mulai,
+            'selesai' => $lampiran->selesai,
+            'asal_sekolah' => $lampiran->asal_sekolah,
             'level' => 'siswa'
         ]);
         return redirect('/home');
@@ -40,7 +43,6 @@ class loginController extends Controller
             $kel->delete();
         }
 
-        // return view('/peserta');
         return view('peserta', compact('user'));
     }
 }
