@@ -18,4 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/lamaran', 'LamaranController@index');
+Route::get('/peserta', 'pesertaController@index');
+Route::post('/postlamaran', 'LamaranController@store');
+Route::get('/daftar', 'LamaranController@create');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+Route::get('/logout', 'loginController@logout');
+
+Route::post('/postAccount/{id}', 'pesertaController@post');
+
+

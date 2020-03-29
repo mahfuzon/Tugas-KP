@@ -16,8 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_Admin'
+        'name', 'email', 'password', 'level',
     ];
+
+
+    public function peserta(){
+        return $this->hasOne('App\peserta', 'user_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
