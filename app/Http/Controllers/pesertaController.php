@@ -54,7 +54,7 @@ class pesertaController extends Controller
         $user->name = $lampiran->nama;
         $user->email = $lampiran->email;
         $user->password = bcrypt('12345');
-        $user->level = 'admin';
+        $user->level = 'peserta';
         $user->save();
 
         peserta::create([
