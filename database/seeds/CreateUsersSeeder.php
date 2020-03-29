@@ -20,9 +20,9 @@ class CreateUsersSeeder extends Seeder
                'password'=> bcrypt('admin'),
             ],
             [
-               'name'=>'User',
+               'name'=>'peserta',
                'email'=>'user@gmail.com',
-                'level'=>'siswa',
+                'level'=>'peserta',
                'password'=> bcrypt('user'),
             ],
         ];
