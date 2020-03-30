@@ -36,7 +36,7 @@
                             </div>
                             @include('flash_message')
                             @include('errors')
-                            <form class="user" method = "POST" action = "/postlamaran">
+                            <form class="user" method = "POST" action = "/postlamaran" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
@@ -62,6 +62,10 @@
                                         <input type="date" class="form-control form-control-user" id="selesai"
                                             name="selesai" value="{{ old('selesai') }}">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">CV:</label>
+                                    <input type="file" class="form-control form-control-user" id="cv" name="cv" value="{{ old('cv') }}">
                                 </div>
                               <button type="submit" class="btn btn-primary">Daftar</button>
                             </form>

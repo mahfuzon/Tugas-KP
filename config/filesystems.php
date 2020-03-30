@@ -42,6 +42,10 @@ return [
     */
 
     'disks' => [
+        'cv' => [
+            'driver' => 'local',
+            'root' => public_path('cv_peserta')
+        ],
 
         'local' => [
             'driver' => 'local',

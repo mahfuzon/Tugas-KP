@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\lampiran;
 use Validator;
 use Session;
+use Storege;
 
 class LamaranController extends Controller
 {
@@ -69,6 +70,16 @@ class LamaranController extends Controller
             return redirect('/daftar')->withInput();
         }else{
             $lampiran = new lampiran;
+
+            // cv
+            $cv = $request->file('cv');
+            $extensi = $cv->getClientOriginalExtension();
+            $nama = $cv->getClientOriginalName();
+            $penyimpanan = 'cv_peserta';
+            $cv->move($penyimpanan, $nama);
+            $lampiran->cv = $nama;
+
+
             $lampiran->nama = $request->nama;
             $lampiran->asal_sekolah = $request->asal_sekolah;
             $lampiran->email = $request->email;
