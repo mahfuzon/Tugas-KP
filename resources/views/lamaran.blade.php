@@ -23,6 +23,7 @@
                             <th>Email</th>
                             <th>Tanggal Mulai</th>
                             <th>Tanggal Selesai</th>
+                            <th>CV</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,6 +35,11 @@
                             <td>{{$lam->email}}</td>
                             <td>{{$lam->mulai->format('d-M-Y')}}</td>
                             <td>{{$lam->selesai->format('d-M-Y')}}</td>
+                            <td>
+                                <form action="/cv/{$lam->id}" method="post">
+                                    <input type="submit" value="{{$lam->cv}}">
+                                </form>
+                            </td>
                             <td>
                             @if($lam->acc == 0)
                                 <form action="/postAccount/{{$lam->id}}" method="POST">
