@@ -48,7 +48,8 @@ class LamaranController extends Controller
             'asal_sekolah' => 'required|string',
             'email' => 'required|email',
             'mulai' => 'required|date',
-            'selesai' => 'required|date'
+            'selesai' => 'required|date',
+            'cv' => 'required'
         ]);
 
         if($validator->fails()){
@@ -74,7 +75,7 @@ class LamaranController extends Controller
             // cv
             $cv = $request->file('cv');
             $extensi = $cv->getClientOriginalExtension();
-            $nama = $cv->getClientOriginalName();
+            $nama = date('Y-M-d-H-i-s'). " $request->nama". ".$extensi";
             $penyimpanan = 'cv_peserta';
             $cv->move($penyimpanan, $nama);
             $lampiran->cv = $nama;
@@ -89,6 +90,14 @@ class LamaranController extends Controller
             $lampiran->save();
         }
         return redirect('/login');
+    }
+
+    public function download($id)
+    {   
+        $lampirans = lampiran::all();
+        $lampiran = $lampirans->find($id);
+        $file = public_path(). '/cv_peserta/' . $lampiran->cv;
+        return response()->download($file, $lampiran->cv);
     }
 
     /**
