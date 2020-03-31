@@ -13,11 +13,11 @@ class TableSekolah extends Migration
      */
     public function up()
     {
-        Schema::table('sekolah', function (Blueprint $table) {
+        Schema::create('sekolah', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_sekolah'); 
+            $table->string('nama');
             $table->text('alamat');
-            $table->string('email_sekolah')->unique();
+            $table->string('email')->unique();
             $table->string('no_telepon')->unique();
             $table->timestamps();
         });
@@ -30,8 +30,6 @@ class TableSekolah extends Migration
      */
     public function down()
     {
-        Schema::table('sekolah', function (Blueprint $table) {
-            Schema::dropIfExists('sekolah');
-        });
+        Schema::dropIfExists('sekolah');
     }
 }
