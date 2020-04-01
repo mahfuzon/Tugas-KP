@@ -25,6 +25,8 @@ Route::get('/daftar', 'LamaranController@create');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 Route::get('/logout', 'loginController@logout');
 Route::post('cv/{id}', 'LamaranController@download');
+Route::get('/sekolah', 'SekolahController@index');
+Route::get('/sekolah/edit/{id}', 'SekolahController@edit');
 
 Route::post('/postAccount/{id}', 'pesertaController@post');
 

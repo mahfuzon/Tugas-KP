@@ -24,7 +24,7 @@ class pesertaController extends Controller
             $p->delete();
             User::where('id', $p->user_id)->delete();
         }
-        return view('peserta', compact('peserta'));
+        return view('peserta', compact('peserta', 'halaman'));
     }
 
     /**

@@ -16,7 +16,7 @@ class SekolahController extends Controller
     {
         $sekolah = sekolah::all();
         $halaman = 'sekolah';
-        return view('/sekolah', compact('sekolah', 'halaman'));
+        return view('sekolah.sekolah', compact('sekolah', 'halaman'));
     }
 
     /**
@@ -59,7 +59,9 @@ class SekolahController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sekolah = sekolah::findOrFail($id);
+        $halaman = 'sekolah';
+        return view('sekolah.edit', compact('sekolah', 'halaman'));
     }
 
     /**

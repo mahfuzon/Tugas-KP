@@ -35,7 +35,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -44,12 +44,21 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-users"></i>
-                    <span>Participant</span>
+            @if(isset($halaman) && $halaman == 'peserta')
+            <li class="nav-item active">
+                <a class="nav-link" href="/peserta">
+                    <i class="fas fa-envelope"></i>
+                    <span>Peserta</span>
                 </a>
             </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="/peserta">
+                    <i class="fas fa-envelope"></i>
+                    <span>Peserta</span>
+                </a>
+            </li>
+            @endif
 
             <!-- Nav Item - Utilities Collapse Menu -->
             @if(isset($halaman) && $halaman == 'lamaran')
@@ -64,6 +73,22 @@
                 <a class="nav-link" href="/lamaran">
                     <i class="fas fa-envelope"></i>
                     <span>Submision</span>
+                </a>
+            </li>
+            @endif
+
+            @if(isset($halaman) && $halaman == 'sekolah')
+            <li class="nav-item active">
+                <a class="nav-link" href="/sekolah">
+                    <i class="fas fa-envelope"></i>
+                    <span>Sekolah</span>
+                </a>
+            </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="/sekolah">
+                    <i class="fas fa-envelope"></i>
+                    <span>Sekolah</span>
                 </a>
             </li>
             @endif
