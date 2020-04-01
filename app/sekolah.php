@@ -8,4 +8,8 @@ class sekolah extends Model
 {
     protected $table = 'sekolah';
     protected $fillable = ['nama' , 'alamat', 'email', 'no_telepon'];
+
+    public function peserta(){
+        return $this->hasMany('App\peserta', 'sekolah_id');
+    }
 }

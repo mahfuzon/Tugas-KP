@@ -8,7 +8,7 @@ class peserta extends Model
 {
     protected $table = "peserta";
     protected $primaryKey = 'user_id';
-    protected $fillable = ['user_id','lampiran_id', 'nama', 'asal_sekolah', 'mulai', 'selesai', 'email'];
+    protected $fillable = ['user_id','lampiran_id', 'nama', 'asal_sekolah', 'mulai', 'selesai', 'email', 'sekolah_id'];
     protected $dates = ['mulai', 'selesai'];
 
     public function user()

@@ -34,14 +34,21 @@
                             <td>{{$s->email}}</td>
                             <td>{{$s->no_telepon}}</td>
                             <td>
-                                <form action="/sekolah/edit/{{$s->id}}" method="GET">
+                                <a href="/sekolah/edit/{{$s->id}}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('edit').submit();" title="edit" style="float:left;margin-left:10px;">
+                                                     <i class="fas fa-edit" style="color:blue;"></i>
+                                </a>
+                                <form action="/sekolah/edit/{{$s->id}}" method="GET" id="edit">
                                     @csrf
-                                    <input type="submit" value="edit" class="btn btn-primary btn-md" style="float:left">
                                 </form>
-
-                                <form action="/sekolah/delete/{{$s->id}}" method="post">
+                                <a href="/sekolah/delete/{{$s->id}}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('delete').submit();" title="delete" style='float:left; margin-left:20px;'>
+                                                     <i class="fas fa-trash-alt" style="color:red;"></i>
+                                </a>
+                                <form action="/sekolah/delete/{{$s->id}}" method="post" id="delete">
                                     @csrf
-                                    <input type="submit" value="Hapus" class="btn btn-danger btn-md" style="float:left; margin-left: 10px;">
                                 </form>
                             </td>
                         </tr>
