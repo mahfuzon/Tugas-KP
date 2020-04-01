@@ -26,7 +26,8 @@ class SekolahController extends Controller
      */
     public function create()
     {
-        //
+        $halaman = 'sekolah';
+        return view('sekolah.tambah', compact('halaman'));
     }
 
     /**
@@ -37,7 +38,9 @@ class SekolahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        sekolah::create($input);
+        return redirect('/sekolah');
     }
 
     /**

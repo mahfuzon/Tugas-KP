@@ -12,7 +12,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div>
-                <a href="/sekolah/create" class="btn btn-success btn-md" style="background:#32CD32; float:right;color:white;margin-bottom:20px;">+ Tambah Data</a>
+                <a href="/sekolah/create" class="btn btn-success btn-md" style="float:right;margin-bottom:20px;">+ Tambah Data</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

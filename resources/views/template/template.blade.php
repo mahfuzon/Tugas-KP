@@ -47,14 +47,14 @@
             @if(isset($halaman) && $halaman == 'peserta')
             <li class="nav-item active">
                 <a class="nav-link" href="/peserta">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-users"></i>
                     <span>Peserta</span>
                 </a>
             </li>
             @else
             <li class="nav-item">
                 <a class="nav-link" href="/peserta">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-users"></i>
                     <span>Peserta</span>
                 </a>
             </li>
@@ -80,14 +80,14 @@
             @if(isset($halaman) && $halaman == 'sekolah')
             <li class="nav-item active">
                 <a class="nav-link" href="/sekolah">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-school"></i>
                     <span>Sekolah</span>
                 </a>
             </li>
             @else
             <li class="nav-item">
                 <a class="nav-link" href="/sekolah">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-school"></i>
                     <span>Sekolah</span>
                 </a>
             </li>

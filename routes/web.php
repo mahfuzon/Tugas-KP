@@ -26,9 +26,11 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 Route::get('/logout', 'loginController@logout');
 Route::post('cv/{id}', 'LamaranController@download');
 Route::get('/sekolah', 'SekolahController@index');
+Route::get('/sekolah/create', 'SekolahController@create');
 Route::get('/sekolah/edit/{id}', 'SekolahController@edit');
 Route::post('/sekolah/update/{id}', 'SekolahController@update');
 Route::post('/sekolah/delete/{id}', 'SekolahController@destroy');
+Route::post('/sekolah/store', 'SekolahController@store');
 
 Route::post('/postAccount/{id}', 'pesertaController@post');
 
