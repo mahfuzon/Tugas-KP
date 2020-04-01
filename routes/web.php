@@ -27,6 +27,8 @@ Route::get('/logout', 'loginController@logout');
 Route::post('cv/{id}', 'LamaranController@download');
 Route::get('/sekolah', 'SekolahController@index');
 Route::get('/sekolah/edit/{id}', 'SekolahController@edit');
+Route::post('/sekolah/update/{id}', 'SekolahController@update');
+Route::post('/sekolah/delete/{id}', 'SekolahController@destroy');
 
 Route::post('/postAccount/{id}', 'pesertaController@post');
 

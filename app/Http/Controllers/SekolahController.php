@@ -73,7 +73,9 @@ class SekolahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sekolah = sekolah::findOrFail($id);
+        $sekolah->update($request->all());
+        return redirect('/sekolah');
     }
 
     /**
@@ -84,6 +86,8 @@ class SekolahController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sekolah = sekolah::findOrFail($id);
+        $sekolah->delete();
+        return redirect('/sekolah');
     }
 }
