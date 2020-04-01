@@ -21,6 +21,7 @@ class CreatePesertaTable extends Migration
             $table->string('email')->unique();
             $table->date('mulai');
             $table->date('selesai');
+            $table->bigInteger('sekolah_id')->nullable();
             $table->timestamps();
         });
     }

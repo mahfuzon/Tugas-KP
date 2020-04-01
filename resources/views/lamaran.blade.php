@@ -33,21 +33,26 @@
                             <td>{{$lam->mulai->format('d-M-Y')}}</td>
                             <td>{{$lam->selesai->format('d-M-Y')}}</td>
                             <td>
-                                <a href="/cv/{{$lam->id}}"  onclick="event.preventDefault();
+                                <a href="/cv/{{$lam->id}}"
+                                    onclick="event.preventDefault();
                                                      document.getElementById('{{$lam->id}}').submit();">{{$lam->cv}}</a>
                                 <form action="/cv/{{$lam->id}}" method="post" id="{{$lam->id}}" style="display:none;">
                                     @csrf
                                 </form>
                             </td>
                             <td>
-                            @if($lam->acc == 0)
-                                <form action="/postAccount/{{$lam->id}}" method="POST">
-                                @csrf
-                                <input type="submit" name="submit" value="Accept" class="btn btn-success btn-sm">
+                                @if($lam->acc == 0)
+                                <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
+                                                     document.getElementById('acc').submit();" title="accept"
+                                    style='float:left; margin-left:20px;'>
+                                    <i class="fas fa-user-check" style="color:green;"></i>
+                                </a>
+                                <form action="/postAccount/{{$lam->id}}" method="POST" id="acc">
+                                    @csrf
                                 </form>
-                            @else
+                                @else
                                 <p>acc</p>
-                            @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach
