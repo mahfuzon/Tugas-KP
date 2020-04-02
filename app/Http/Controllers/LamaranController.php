@@ -7,6 +7,7 @@ use App\lampiran;
 use Validator;
 use Session;
 use Storege;
+use Auth;
 
 class LamaranController extends Controller
 {
@@ -29,6 +30,9 @@ class LamaranController extends Controller
      */
     public function create()
     {
+        if(Auth::check() && Auth::user()->level == 'guru'){
+            return Auth::user()->level;
+        }
         return view('daftar');
     }
 
@@ -63,17 +67,17 @@ class LamaranController extends Controller
         $mulai = strtotime($request->mulai);
         $selesai = strtotime($request->selesai);
         $selisih = ($selesai - $mulai)/86400;
-        if(auth()->user()->level == 'guru'){
-            if($mulai_daftar < $date || $selesai_kp < $date){
-                Session::flash('flash_message', 'inputkan tanggal yang sesuai');
-                return redirect('/daftar')->withInput();
-            }else if($selisih < 60){  
-                Session::flash('flash_message', 'Magang minimal 2 bulan');
-                return redirect('/daftar')->withInput();
-            }else{
+        if($mulai_daftar < $date || $selesai_kp < $date){
+            Session::flash('flash_message', 'inputkan tanggal yang sesuai');
+            return redirect('/daftar')->withInput();
+        }else if($selisih < 60){  
+            Session::flash('flash_message', 'Magang minimal 2 bulan');
+            return redirect('/daftar')->withInput();
+        }else{
+            if(Auth::check() && Auth::user()->level == 'guru'){
                 $lampiran1 = new lampiran;
                 $cv1 = $request->file('cv1');
-                $extensi1 = $c1->getClientOriginalExtension();
+                $extensi1 = $cv1->getClientOriginalExtension();
                 $nama1 = date('Y-M-d-H-i-s'). " $request->nama1". ".$extensi1";
                 $penyimpanan1 = 'cv_peserta';
                 $cv1->move($penyimpanan1, $nama1);
@@ -103,14 +107,6 @@ class LamaranController extends Controller
                 $lampiran2->selesai = $request->selesai;  
                 $lampiran2->acc = 0;
                 $lampiran2->save();
-            }    
-        }else{
-            if($mulai_daftar < $date || $selesai_kp < $date){
-                Session::flash('flash_message', 'inputkan tanggal yang sesuai');
-                return redirect('/daftar')->withInput();
-            }else if($selisih < 60){  
-                Session::flash('flash_message', 'Magang minimal 2 bulan');
-                return redirect('/daftar')->withInput();
             }else{
                 $lampiran = new lampiran;
 
@@ -130,8 +126,8 @@ class LamaranController extends Controller
                 $lampiran->selesai = $request->selesai;  
                 $lampiran->acc = 0;
                 $lampiran->save();
-            }
-            return redirect('/login');
+            }    
+        return redirect('/login');
         }
     }
 
