@@ -101,7 +101,8 @@ class LamaranController extends Controller
                 $selesai = $request->selesai;  
 
                 for($i = 0; $i<count($nama); $i++){
-                    $nama_cv = time()." $nama[$i]". ".$extensi[$i]";
+                    $name = time().'.'.$file->extension();
+                    $nama_cv = time()." $nama[$i]". ".$cv->extension()";
                     $penyimpanan = 'cv_peserta';
                     $cv[$i]->move($penyimpanan, $nama_cv[$i]);
                     $data = array(

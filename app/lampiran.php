@@ -18,5 +18,9 @@ class lampiran extends Model
     public function sekolah(){
         return $this->hasMany('App\sekolah', 'sekolah_id');
     }
+
+    public function cv(){
+        return $this->hasOne('App\cv', 'lampiran_id');
+    }
     
 }
