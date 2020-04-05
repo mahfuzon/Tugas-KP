@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\lampiran;
+use App\cv;
 use Validator;
 use Session;
 use Storege;
@@ -19,9 +20,10 @@ class LamaranController extends Controller
      */
     public function index()
     {
+        $cv = cv::all();
         $lampiran = lampiran::all();
         $halaman = "lamaran";
-        return view('lamaran', compact('halaman','lampiran'));
+        return view('lamaran', compact('halaman','lampiran','cv'));
     }
 
     /**
@@ -50,7 +52,6 @@ class LamaranController extends Controller
 
         // Validator
         if(Auth::check() && Auth::user()->level == 'guru'){
-            $pesan;
             $validator = Validator::make($input, [
                 'nama.*' => 'required|string|max:30',
                 'asal_sekolah.*' => 'required|string',
@@ -66,7 +67,7 @@ class LamaranController extends Controller
                 'email' => 'required|email',
                 'mulai' => 'required|date',
                 'selesai' => 'required|date',
-                'cv' => 'required'
+                'cv' => 'required',
             ]);
         }
 
@@ -74,52 +75,61 @@ class LamaranController extends Controller
             return redirect ('/daftar')->withInput()->withErrors($validator);
         }
 
-        $date = date('Y-m-d');
-        $mulai_daftar = $request->mulai;
-        $selesai_kp = $request->selesai;
-        $now = time();
-        for($i=0; $i<count($mulai_daftar);$i++){
-            $mulai = strtotime($request->mulai[$i]);
-            $selesai = strtotime($request->selesai[$i]);
-        }
-        $selisih = ($selesai - $mulai)/86400;
-        if($mulai_daftar < $date || $selesai_kp < $date){
-            Session::flash('flash_message', 'inputkan tanggal yang sesuai');
-            return redirect('/daftar')->withInput();
-        }else if($selisih < 60){  
-            Session::flash('flash_message', 'Magang minimal 2 bulan');
-            return redirect('/daftar')->withInput();
-        }else{
-            if(Auth::check() && Auth::user()->level == 'guru'){
-                $lampiran = new lampiran;
-                
-                $cv = $request->file('cv.*');
-                $nama = $request->nama;
-                $asal_sekolah = $request->asal_sekolah;
-                $email = $request->email;
-                $mulai = $request->mulai;
-                $selesai = $request->selesai;  
-
-                for($i = 0; $i<count($nama); $i++){
-                    $name = time().'.'.$file->extension();
-                    $nama_cv = time()." $nama[$i]". ".$cv->extension()";
-                    $penyimpanan = 'cv_peserta';
-                    $cv[$i]->move($penyimpanan, $nama_cv[$i]);
-                    $data = array(
-                        'nama' => $nama[$i],
-                        'asal_sekolah' => $asal_sekolah[$i],
-                        'email' => $email[$i],
-                        'mulai' => $mulai[$i],
-                        'selesai' => $selesai[$i],
-                        'cv' => $nama[$i],
-                        'acc' => 0
-                    );
-                    $insert[] = $data;
-                }
-                lampiran::cretate($insert);
-                return "insert data berhasil";
+           // lampiran
+            $date = date('Y-m-d');
+            $mulai_daftar = $request->mulai;
+            $selesai_kp = $request->selesai;
+            $now = time();
+            for($i=0; $i<count($mulai_daftar);$i++){
+                $mulai = strtotime($request->mulai[$i]);
+                $selesai = strtotime($request->selesai[$i]);
+            }
+            $selisih = ($selesai - $mulai)/86400;
+            if($mulai_daftar < $date || $selesai_kp < $date){
+                Session::flash('flash_message', 'inputkan tanggal yang sesuai');
+                return redirect('/daftar')->withInput();
+            }else if($selisih < 60){  
+                Session::flash('flash_message', 'Magang minimal 2 bulan');
+                return redirect('/daftar')->withInput();
             }else{
-                $lampiran = new lampiran;
+                if(Auth::check() && Auth::user()->level == 'guru'){
+                    $lampiran = new lampiran;
+                    $nama = $request->nama;
+                    $asal_sekolah = $request->asal_sekolah;
+                    $email = $request->email;
+                    $mulai = $request->mulai;
+                    $selesai = $request->selesai;  
+
+                    for($i = 0; $i<count($nama); $i++){
+                        $data = array(
+                            'nama' => $nama[$i],
+                            'asal_sekolah' => $asal_sekolah[$i],
+                            'email' => $email[$i],
+                            'mulai' => $mulai[$i],
+                            'selesai' => $selesai[$i],
+                            'acc' => 0
+                        );
+                        $insert[] = $data;
+                    }
+                    lampiran::insert($insert);
+
+        // cv
+        if($request->hasfile('cv'))
+        {
+            $cv = $request->file('cv');
+            for($i=0; $i<count($cv); $i++)
+            {
+                $extensi = $cv[$i]->getClientOriginalExtension();
+                $nama_cv = date('Y-M-d-H-i-s'). ".$extensi";
+                $penyimpanan = 'cv_peserta';
+                $cv[$i]->move($penyimpanan, $nama_cv);
+                $f = new cv;
+                $f->cv = $nama_cv;
+                $f->save();
+            } 
+        }  
+        }else{
+            $lampiran = new lampiran;
 
                 // cv
                 $cv = $request->file('cv');

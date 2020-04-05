@@ -14,7 +14,7 @@ class CreateCvTable extends Migration
     public function up()
     {
         Schema::create('cv', function (Blueprint $table) {
-            $table->bigIncrements('lampiran_id');
+            $table->bigIncrements('id');
             $table->string('cv');
             $table->timestamps();
         });
