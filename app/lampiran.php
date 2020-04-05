@@ -14,5 +14,9 @@ class lampiran extends Model
     public function peserta(){
         return $this->hasMany('App\peserta', 'lampiran_id');
     }
+
+    public function sekolah(){
+        return $this->hasMany('App\sekolah', 'sekolah_id');
+    }
     
 }

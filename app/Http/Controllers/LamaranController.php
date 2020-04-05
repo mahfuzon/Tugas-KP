@@ -8,6 +8,7 @@ use Validator;
 use Session;
 use Storege;
 use Auth;
+use App\sekolah;
 
 class LamaranController extends Controller
 {
@@ -30,8 +31,9 @@ class LamaranController extends Controller
      */
     public function create()
     {
+        $sekolah = sekolah::pluck('nama', 'id');
         if(Auth::check() && Auth::user()->level == 'guru'){
-            return Auth::user()->level;
+            return view('daftar_guru', compact('sekolah'));
         }
         return view('daftar');
     }
@@ -47,14 +49,26 @@ class LamaranController extends Controller
         $input = $request->all();
 
         // Validator
-        $validator = Validator::make($input, [
-            'nama' => 'required|string|max:30',
-            'asal_sekolah' => 'required|string',
-            'email' => 'required|email',
-            'mulai' => 'required|date',
-            'selesai' => 'required|date',
-            'cv' => 'required'
-        ]);
+        if(Auth::check() && Auth::user()->level == 'guru'){
+            $pesan;
+            $validator = Validator::make($input, [
+                'nama.*' => 'required|string|max:30',
+                'asal_sekolah.*' => 'required|string',
+                'email.*' => 'required|email',
+                'mulai.*' => 'required|date',
+                'selesai.*' => 'required|date',
+                'cv.*' => 'required',
+            ]);
+        }else{
+            $validator = Validator::make($input, [
+                'nama' => 'required|string|max:30',
+                'asal_sekolah' => 'required|string',
+                'email' => 'required|email',
+                'mulai' => 'required|date',
+                'selesai' => 'required|date',
+                'cv' => 'required'
+            ]);
+        }
 
         if($validator->fails()){
             return redirect ('/daftar')->withInput()->withErrors($validator);
@@ -64,8 +78,10 @@ class LamaranController extends Controller
         $mulai_daftar = $request->mulai;
         $selesai_kp = $request->selesai;
         $now = time();
-        $mulai = strtotime($request->mulai);
-        $selesai = strtotime($request->selesai);
+        for($i=0; $i<count($mulai_daftar);$i++){
+            $mulai = strtotime($request->mulai[$i]);
+            $selesai = strtotime($request->selesai[$i]);
+        }
         $selisih = ($selesai - $mulai)/86400;
         if($mulai_daftar < $date || $selesai_kp < $date){
             Session::flash('flash_message', 'inputkan tanggal yang sesuai');
@@ -75,38 +91,32 @@ class LamaranController extends Controller
             return redirect('/daftar')->withInput();
         }else{
             if(Auth::check() && Auth::user()->level == 'guru'){
-                $lampiran1 = new lampiran;
-                $cv1 = $request->file('cv1');
-                $extensi1 = $cv1->getClientOriginalExtension();
-                $nama1 = date('Y-M-d-H-i-s'). " $request->nama1". ".$extensi1";
-                $penyimpanan1 = 'cv_peserta';
-                $cv1->move($penyimpanan1, $nama1);
-                $lampiran1->cv = $nama1;
+                $lampiran = new lampiran;
+                
+                $cv = $request->file('cv.*');
+                $nama = $request->nama;
+                $asal_sekolah = $request->asal_sekolah;
+                $email = $request->email;
+                $mulai = $request->mulai;
+                $selesai = $request->selesai;  
 
-                $lampiran1->nama = $request->nama1;
-                $lampiran1->asal_sekolah = $request->asal_sekolah;
-                $lampiran1->email = $request->email1;
-                $lampiran1->mulai = $request->mulai;
-                $lampiran1->selesai = $request->selesai;  
-                $lampiran1->acc = 0;
-                $lampiran1->save();
-
-                $lampiran2 = new lampiran;
-                // cv
-                $cv2 = $request->file('cv2');
-                $extensi2 = $cv->getClientOriginalExtension();
-                $nama2 = date('Y-M-d-H-i-s'). " $request->nama2". ".$extensi2";
-                $penyimpanan2 = 'cv_peserta';
-                $cv2->move($penyimpanan2, $nama2);
-                $lampiran2->cv = $nama2;
-
-                $lampiran2->nama = $request->nama2;
-                $lampiran2->asal_sekolah = $request->asal_sekolah;
-                $lampiran2->email = $request->email2;
-                $lampiran2->mulai = $request->mulai;
-                $lampiran2->selesai = $request->selesai;  
-                $lampiran2->acc = 0;
-                $lampiran2->save();
+                for($i = 0; $i<count($nama); $i++){
+                    $nama_cv = time()." $nama[$i]". ".$extensi[$i]";
+                    $penyimpanan = 'cv_peserta';
+                    $cv[$i]->move($penyimpanan, $nama_cv[$i]);
+                    $data = array(
+                        'nama' => $nama[$i],
+                        'asal_sekolah' => $asal_sekolah[$i],
+                        'email' => $email[$i],
+                        'mulai' => $mulai[$i],
+                        'selesai' => $selesai[$i],
+                        'cv' => $nama[$i],
+                        'acc' => 0
+                    );
+                    $insert[] = $data;
+                }
+                lampiran::cretate($insert);
+                return "insert data berhasil";
             }else{
                 $lampiran = new lampiran;
 
