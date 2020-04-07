@@ -93,41 +93,46 @@ class LamaranController extends Controller
                 return redirect('/daftar')->withInput();
             }else{
                 if(Auth::check() && Auth::user()->level == 'guru'){
-                    $lampiran = new lampiran;
+                    
                     $nama = $request->nama;
                     $asal_sekolah = $request->asal_sekolah;
                     $email = $request->email;
                     $mulai = $request->mulai;
-                    $selesai = $request->selesai;  
+                    $selesai = $request->selesai;
+                    $input = $request->file('cv');
 
                     for($i = 0; $i<count($nama); $i++){
-                        $data = array(
-                            'nama' => $nama[$i],
-                            'asal_sekolah' => $asal_sekolah[$i],
-                            'email' => $email[$i],
-                            'mulai' => $mulai[$i],
-                            'selesai' => $selesai[$i],
-                            'acc' => 0
-                        );
-                        $insert[] = $data;
+                        $lampiran = new lampiran;
+                        $lampiran->nama = $nama[$i];
+                        $lampiran->asal_sekolah = $asal_sekolah[$i];
+                        $lampiran->email = $email[$i];
+                        $lampiran->mulai = $mulai[$i];
+                        $lampiran->selesai = $selesai[$i];
+                        $lampiran->acc = 0;
+                        $extensi = $input[$i]->getClientOriginalExtension();
+                        $nama_cv = date('Y-M-d-H-i-s'). ".$extensi";
+                        $penyimpanan = 'cv_peserta';
+                        $input[$i]->move($penyimpanan, $nama_cv);
+                        $lampiran->cv = $nama_cv;
+                        $lampiran->save();
                     }
-                    lampiran::insert($insert);
+                    return redirect('/lampiran');
 
         // cv
-        if($request->hasfile('cv'))
-        {
-            $cv = $request->file('cv');
-            for($i=0; $i<count($cv); $i++)
-            {
-                $extensi = $cv[$i]->getClientOriginalExtension();
-                $nama_cv = date('Y-M-d-H-i-s'). ".$extensi";
-                $penyimpanan = 'cv_peserta';
-                $cv[$i]->move($penyimpanan, $nama_cv);
-                $f = new cv;
-                $f->cv = $nama_cv;
-                $f->save();
-            } 
-        }  
+        // if($request->hasfile('cv'))
+        // {
+        //     $input = $request->file('cv');
+        //     for($i=0; $i<count($input); $i++)
+        //     {
+        //         $cv = new cv;
+        //         $extensi = $input[$i]->getClientOriginalExtension();
+        //         $nama_cv = date('Y-M-d-H-i-s'). ".$extensi";
+        //         $penyimpanan = 'cv_peserta';
+        //         $input[$i]->move($penyimpanan, $nama_cv);
+        //         $cv->cv = $nama_cv;
+        //         $lampiran->cv()->save($cv);
+        //     } 
+        // }  
         }else{
             $lampiran = new lampiran;
 

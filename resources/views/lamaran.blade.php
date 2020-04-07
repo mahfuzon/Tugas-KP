@@ -35,7 +35,7 @@
                             <td>
                                 <a href="/cv/{{$lam->id}}"
                                     onclick="event.preventDefault();
-                                                     document.getElementById('{{$lam->id}}').submit();">{{$cv->cv}}</a>
+                                                     document.getElementById('{{$lam->id}}').submit();">{{$lam->cv}}</a>
                                 <form action="/cv/{{$lam->id}}" method="post" id="{{$lam->id}}" style="display:none;">
                                     @csrf
                                 </form>
