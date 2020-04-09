@@ -29,10 +29,10 @@
                     <tbody>
                         @foreach($sekolah as $s)
                         <tr>
-                            <td>{{$s->nama}}</td>
-                            <td>{{$s->alamat}}</td>
-                            <td>{{$s->email}}</td>
-                            <td>{{$s->no_telepon}}</td>
+                            <td>{{$s->nama_sekolah}}</td>
+                            <td>{{$s->alamat_sekolah}}</td>
+                            <td>{{$s->email_sekolah}}</td>
+                            <td>{{$s->no_telepon_sekolah}}</td>
                             <td>
                                 <a href="/sekolah/edit/{{$s->id}}"
                                        onclick="event.preventDefault();

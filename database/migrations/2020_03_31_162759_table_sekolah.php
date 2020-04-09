@@ -15,10 +15,10 @@ class TableSekolah extends Migration
     {
         Schema::create('sekolah', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->text('alamat');
-            $table->string('email')->unique();
-            $table->string('no_telepon')->unique();
+            $table->string('nama_sekolah');
+            $table->text('alamat_sekolah');
+            $table->string('email_sekolah')->unique();
+            $table->string('no_telepon_sekolah')->unique();
             $table->timestamps();
         });
     }

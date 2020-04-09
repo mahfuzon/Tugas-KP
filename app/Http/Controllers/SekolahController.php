@@ -40,6 +40,20 @@ class SekolahController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+
+          // validasi
+          $validator = Validator::make($input, [
+            'nama_sekolah' => 'required|string',
+            'alamat_sekolah' => 'required|string',
+            'email_sekolah' => 'required|email|unique:sekolah',
+            'no_telepon_sekolah' => 'required|numeric|unique:sekolah'
+        ]);
+
+        if($validator->fails()){
+            return redirect('/sekolah/create/')->withInput()->withErrors($validator);
+        }
+
+
         sekolah::create($input);
         return redirect('/sekolah');
     }
@@ -80,10 +94,10 @@ class SekolahController extends Controller
         $input = $request->all();
         // validasi
         $validator = Validator::make($input, [
-            'nama' => 'required|string',
-            'alamat' => 'required|string',
-            'email' => 'email|required',
-            'no_telepon' => 'required|numeric'
+            'nama_sekolah' => 'required|string',
+            'alamat_sekolah' => 'required|string',
+            'email_sekolah' => 'required|email|unique:sekolah,email_sekolah,'.$id,
+            'no_telepon_sekolah' => 'required|numeric|unique:sekolah,no_telepon_sekolah,'.$id
         ]);
 
         if($validator->fails()){
