@@ -116,23 +116,7 @@ class LamaranController extends Controller
                         $lampiran->cv = $nama_cv;
                         $lampiran->save();
                     }
-                    return redirect('/lampiran');
-
-        // cv
-        // if($request->hasfile('cv'))
-        // {
-        //     $input = $request->file('cv');
-        //     for($i=0; $i<count($input); $i++)
-        //     {
-        //         $cv = new cv;
-        //         $extensi = $input[$i]->getClientOriginalExtension();
-        //         $nama_cv = date('Y-M-d-H-i-s'). ".$extensi";
-        //         $penyimpanan = 'cv_peserta';
-        //         $input[$i]->move($penyimpanan, $nama_cv);
-        //         $cv->cv = $nama_cv;
-        //         $lampiran->cv()->save($cv);
-        //     } 
-        // }  
+                return redirect('/lamaran');
         }else{
             $lampiran = new lampiran;
 

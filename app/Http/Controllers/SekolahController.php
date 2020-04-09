@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\sekolah;
-
+use Session;
+use Validator;
 class SekolahController extends Controller
 {
     /**
@@ -76,6 +77,19 @@ class SekolahController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $input = $request->all();
+        // validasi
+        $validator = Validator::make($input, [
+            'nama' => 'required|string',
+            'alamat' => 'required|string',
+            'email' => 'email|required',
+            'no_telepon' => 'required|numeric'
+        ]);
+
+        if($validator->fails()){
+            return redirect('/sekolah/edit/'.$id)->withInput()->withErrors($validator);
+        }
+
         $sekolah = sekolah::findOrFail($id);
         $sekolah->update($request->all());
         return redirect('/sekolah');

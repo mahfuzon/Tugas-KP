@@ -18,6 +18,6 @@ class IsAdmin
         if(auth()->user()->level == 'admin'){
             return $next($request);
         }
-        return redirect(‘home’)->with(‘error’,"Akses di tolak");
+        return redirect('/home');
     }
 }

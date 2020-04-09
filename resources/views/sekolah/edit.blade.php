@@ -13,12 +13,13 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
+        @include('errors')
             <form action="/sekolah/update/{{$sekolah->id}}" method="POST">
             @csrf
                 <div class="form-group row">
                     <label for="nama" class="col-sm-2 col-form-label">Nama Sekolah:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" value="{{$sekolah->nama}}">
+                        <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
                     </div>
                 </div>
                 <div class="form-group row">
