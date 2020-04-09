@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
 
 use Illuminate\Http\Request;
 
@@ -34,9 +33,6 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        if(Auth::check() && Auth()->User()->level == 'admin'){
-            return view('adminHome');
-        }
-        return redirect('/home');
+        return view('adminHome');
     }
 }
