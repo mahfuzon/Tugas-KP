@@ -60,6 +60,11 @@ class LamaranController extends Controller
                 'selesai.*' => 'required|date',
                 'cv.*' => 'required',
             ]);
+
+            
+        if($validator->fails()){
+            return redirect ('/daftar')->withInput()->withErrors($validator);
+        }
         }else{
             $validator = Validator::make($input, [
                 'nama' => 'required|string|max:30',
@@ -69,10 +74,9 @@ class LamaranController extends Controller
                 'selesai' => 'required|date',
                 'cv' => 'required',
             ]);
-        }
-
-        if($validator->fails()){
-            return redirect ('/daftar')->withInput()->withErrors($validator);
+            if($validator->fails()){
+                return redirect ('/daftar')->withInput()->withErrors($validator);
+            }
         }
 
            // lampiran
@@ -117,22 +121,6 @@ class LamaranController extends Controller
                         $lampiran->save();
                     }
                     return redirect('/lampiran');
-
-        // cv
-        // if($request->hasfile('cv'))
-        // {
-        //     $input = $request->file('cv');
-        //     for($i=0; $i<count($input); $i++)
-        //     {
-        //         $cv = new cv;
-        //         $extensi = $input[$i]->getClientOriginalExtension();
-        //         $nama_cv = date('Y-M-d-H-i-s'). ".$extensi";
-        //         $penyimpanan = 'cv_peserta';
-        //         $input[$i]->move($penyimpanan, $nama_cv);
-        //         $cv->cv = $nama_cv;
-        //         $lampiran->cv()->save($cv);
-        //     } 
-        // }  
         }else{
             $lampiran = new lampiran;
 
