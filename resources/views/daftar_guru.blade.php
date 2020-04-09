@@ -37,34 +37,34 @@
                                 <div class="form-group">
                                     <label for="nama[]">Nama</label>
                                     <input type="text" class="form-control form-control-user" id="nama[]" name="nama[]"
-                                        value="{{ old('nama[]') }}">
+                                        value="{{ old('nama.0') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah[]">Asal Sekolah</label>
                                     <input type="text" class="form-control form-control-user" id="asal_sekolah[]"
-                                        name="asal_sekolah[]" value="{{ old('asal_sekolah[]') }}">
+                                        name="asal_sekolah[]" value="{{ old('asal_sekolah.0') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email[]">Email</label>
                                     <input type="email" class="form-control form-control-user" id="email[]" name="email[]"
-                                        value="{{ old('email[]') }}">
+                                        value="{{ old('email.0') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="mulai[]">Tanggal Mulai</label>
                                         <input type="date" class="form-control form-control-user" id="mulai[]"
-                                            name="mulai[]" value="{{ old('mulai[]') }}">
+                                            name="mulai[]" value="{{ old('mulai.0') }}">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="selesai">Tanggal Selesai</label>
                                         <input type="date" class="form-control form-control-user" id="selesai[]"
-                                            name="selesai[]" value="{{ old('selesai[]') }}">
+                                            name="selesai[]" value="{{ old('selesai.0') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="cv[]">CV:</label>
                                     <input type="file" class="form-control form-control-user" id="cv[]" name="cv[]"
-                                        value="{{ old('cv[]') }}">
+                                        value="{{ old('cv.0') }}">
                                 </div>
                             </div>
                         </div>
@@ -73,34 +73,34 @@
                                 <div class="form-group">
                                     <label for="nama[]">Nama</label>
                                     <input type="text" class="form-control form-control-user" id="nama[]" name="nama[]"
-                                        value="{{ old('nama[]') }}">
+                                        value="{{ old('nama.1') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah[]">Asal Sekolah</label>
                                     <input type="text" class="form-control form-control-user" id="asal_sekolah[]"
-                                        name="asal_sekolah[]" value="{{ old('asal_sekolah[]') }}">
+                                        name="asal_sekolah[]" value="{{ old('asal_sekolah.1') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email[]">Email</label>
                                     <input type="email" class="form-control form-control-user" id="email[]" name="email[]"
-                                        value="{{ old('email[]') }}">
+                                        value="{{ old('email.1') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="mulai[]">Tanggal Mulai</label>
                                         <input type="date" class="form-control form-control-user" id="mulai[]"
-                                            name="mulai[]" value="{{ old('mulai[]') }}">
+                                            name="mulai[]" value="{{ old('mulai.1') }}">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="selesai[]">Tanggal Selesai</label>
                                         <input type="date" class="form-control form-control-user" id="selesai[]"
-                                            name="selesai[]" value="{{ old('selesai[]') }}">
+                                            name="selesai[]" value="{{ old('selesai.1') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="cv[]">CV:</label>
                                     <input type="file" class="form-control form-control-user" id="cv[]" name="cv[]"
-                                        value="{{ old('cv[]') }}">
+                                        value="{{ old('cv.1') }}">
                                 </div>
                             </div>
                         </div>
