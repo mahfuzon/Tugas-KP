@@ -140,20 +140,20 @@ return [
         ],
 
         'alamat_sekolah' => [
-            'required' => 'Alamat Harus Diisi',
-            'string' => 'Alamat Harus Dalam Bentuk Text'
+            'required' => 'Kolom Alamat Harus Diisi',
+            'string' => 'Kolom Alamat Harus Dalam Bentuk Text'
         ],
 
         'email_sekolah' => [
-            'required' => 'Email Harus Diisi',
-            'unique' => 'Email Telah Digunakan',
+            'required' => 'Kolom Email Harus Diisi',
+            'unique' => 'Email yang Anda Masukkan Telah Digunakan',
             'email' => 'Tambahkan @ Pada Email Anda '
         ],
 
         'no_telepon_sekolah' => [
-            'required' => 'Kolom Telepon Harus Diisi',
+            'required' => 'Kolom No. Telepon Harus Diisi',
             'unique' => 'No. Telepon yang Anda Masukkan Telah Digunakan Sebelumnya',
-            'numeric' => 'Inputkan Tipe Angka'
+            'numeric' => 'Kolom Telepon Harus Diisi dengan Angka'
         ],
 
         'mulai' => [

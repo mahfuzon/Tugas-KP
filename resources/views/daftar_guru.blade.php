@@ -35,9 +35,9 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="form-group">
-                                    <label for="nama[]">Nama</label>
-                                    <input type="text" class="form-control form-control-user" id="nama[]" name="nama[]"
-                                        value="{{ old('nama.0') }}">
+                                    <label for="nama_peserta[]">Nama</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_peserta[]" name="nama_peserta[]"
+                                        value="{{ old('nama_peserta.0') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah[]">Asal Sekolah</label>
@@ -45,9 +45,9 @@
                                         name="asal_sekolah[]" value="{{ old('asal_sekolah.0') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email[]">Email</label>
-                                    <input type="email" class="form-control form-control-user" id="email[]" name="email[]"
-                                        value="{{ old('email.0') }}">
+                                    <label for="email_peserta[]">Email</label>
+                                    <input type="email" class="form-control form-control-user" id="email_peserta[]" name="email_peserta[]"
+                                        value="{{ old('email_peserta.0') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -71,9 +71,9 @@
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="form-group">
-                                    <label for="nama[]">Nama</label>
-                                    <input type="text" class="form-control form-control-user" id="nama[]" name="nama[]"
-                                        value="{{ old('nama.1') }}">
+                                    <label for="nama_peserta[]">Nama</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_peserta[]" name="nama_peserta[]"
+                                        value="{{ old('nama_peserta.1') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah[]">Asal Sekolah</label>
@@ -81,9 +81,9 @@
                                         name="asal_sekolah[]" value="{{ old('asal_sekolah.1') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email[]">Email</label>
-                                    <input type="email" class="form-control form-control-user" id="email[]" name="email[]"
-                                        value="{{ old('email.1') }}">
+                                    <label for="email_peserta[]">Email</label>
+                                    <input type="text" class="form-control form-control-user" id="email_peserta[]" name="email_peserta[]"
+                                        value="{{ old('email_peserta.1') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">

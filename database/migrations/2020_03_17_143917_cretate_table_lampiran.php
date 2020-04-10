@@ -15,9 +15,9 @@ class CretateTableLampiran extends Migration
     {
         Schema::create('lampiran', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama'); 
+            $table->string('nama_peserta'); 
             $table->string('asal_sekolah');
-            $table->string('email')->unique();
+            $table->string('email_peserta')->unique();
             $table->date('mulai');
             $table->date('selesai');
             $table->boolean('acc')->nullable();

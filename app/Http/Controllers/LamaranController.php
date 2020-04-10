@@ -53,18 +53,18 @@ class LamaranController extends Controller
         // Validator
         if(Auth::check() && Auth::user()->level == 'guru'){
             $validator = Validator::make($input, [
-                'nama.*' => 'required|string|max:30',
+                'nama_peserta.*' => 'required|string|max:30',
                 'asal_sekolah.*' => 'required|string',
-                'email.*' => 'required|email',
+                'email_peserta.*' => 'required|email',
                 'mulai.*' => 'required|date',
                 'selesai.*' => 'required|date',
                 'cv.*' => 'required',
             ]);
         }else{
             $validator = Validator::make($input, [
-                'nama' => 'required|string|max:30',
+                'nama_peserta' => 'required|string|max:30',
                 'asal_sekolah' => 'required|string',
-                'email' => 'required|email',
+                'email_peserta' => 'required|email',
                 'mulai' => 'required|date',
                 'selesai' => 'required|date',
                 'cv' => 'required',
@@ -94,18 +94,18 @@ class LamaranController extends Controller
             }else{
                 if(Auth::check() && Auth::user()->level == 'guru'){
                     
-                    $nama = $request->nama;
+                    $nama_peserta = $request->nama_peserta;
                     $asal_sekolah = $request->asal_sekolah;
-                    $email = $request->email;
+                    $email_peserta = $request->email_peserta;
                     $mulai = $request->mulai;
                     $selesai = $request->selesai;
                     $input = $request->file('cv');
 
                     for($i = 0; $i<count($nama); $i++){
                         $lampiran = new lampiran;
-                        $lampiran->nama = $nama[$i];
+                        $lampiran->nama_peserta = $nama_peserta[$i];
                         $lampiran->asal_sekolah = $asal_sekolah[$i];
-                        $lampiran->email = $email[$i];
+                        $lampiran->email_peserta = $email_peserta[$i];
                         $lampiran->mulai = $mulai[$i];
                         $lampiran->selesai = $selesai[$i];
                         $lampiran->acc = 0;
@@ -129,9 +129,9 @@ class LamaranController extends Controller
                 $lampiran->cv = $nama;
 
 
-                $lampiran->nama = $request->nama;
+                $lampiran->nama_peserta = $request->nama_peserta;
                 $lampiran->asal_sekolah = $request->asal_sekolah;
-                $lampiran->email = $request->email;
+                $lampiran->email_peserta = $request->email_peserta;
                 $lampiran->mulai = $request->mulai;
                 $lampiran->selesai = $request->selesai;  
                 $lampiran->acc = 0;

@@ -55,6 +55,7 @@ class SekolahController extends Controller
 
 
         sekolah::create($input);
+        Session::flash('sukses_tambah', 'data berhasil di tambahkan');
         return redirect('/sekolah');
     }
 
@@ -119,6 +120,7 @@ class SekolahController extends Controller
     {
         $sekolah = sekolah::findOrFail($id);
         $sekolah->delete();
+        Session::flash('sukses_hapus', 'data berhasil di hapus');
         return redirect('/sekolah');
     }
 }

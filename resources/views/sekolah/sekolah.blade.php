@@ -12,7 +12,8 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div>
-                <a href="/sekolah/create" class="btn btn-success btn-md" style="float:right;margin-bottom:20px;">+ Tambah Data</a>
+                <a href="/sekolah/create" class="btn btn-success btn-md" style="float:right;margin-bottom:20px;">+
+                    Tambah Data</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -34,18 +35,17 @@
                             <td>{{$s->email_sekolah}}</td>
                             <td>{{$s->no_telepon_sekolah}}</td>
                             <td>
-                                <a href="/sekolah/edit/{{$s->id}}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('edit').submit();" title="edit" style="float:left;margin-left:10px;">
-                                                     <i class="fas fa-edit" style="color:blue;"></i>
+                                <a href="/sekolah/edit/{{$s->id}}" onclick="event.preventDefault();
+                                                     document.getElementById('edit').submit();" title="edit"
+                                    style="float:left;margin-left:10px;">
+                                    <i class="fas fa-edit" style="color:blue;"></i>
                                 </a>
                                 <form action="/sekolah/edit/{{$s->id}}" method="GET" id="edit">
                                     @csrf
                                 </form>
-                                <a href="/sekolah/delete/{{$s->id}}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('delete').submit();" title="delete" style='float:left; margin-left:20px;'>
-                                                     <i class="fas fa-trash-alt" style="color:red;"></i>
+                                <a href="#" sekolah_id="{{$s->id}}" title="delete" style='float:left; margin-left:20px;'
+                                    class="delete">
+                                    <i class="fas fa-trash-alt" style="color:red;"></i>
                                 </a>
                                 <form action="/sekolah/delete/{{$s->id}}" method="post" id="delete">
                                     @csrf
@@ -62,4 +62,26 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+<script>
+    $('.delete').click(function () {
+        const sekolah_id = $(this).attr('sekolah_id');
+        swal({
+                title: "Yakin?",
+                text: "Kamu menghapus data dengan id "+sekolah_id+"!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    event.preventDefault();
+                    document.getElementById('delete').submit();
+                }
+            });
+    });
+    @include('flash_message')
+</script>
 @endsection
