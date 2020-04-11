@@ -16,12 +16,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'level',
+        'email', 'password', 'level', 'peserta_id'
     ];
+
+    protected $primaryKey = 'peserta_id';
 
 
     public function peserta(){
-        return $this->hasOne('App\peserta', 'user_id');
+        return $this->belongsTo('App\peserta', 'peserta_id');
     }
 
     /**

@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class peserta extends Model
 {
     protected $table = "peserta";
-    protected $primaryKey = 'user_id';
-    protected $fillable = ['user_id','lampiran_id', 'nama', 'asal_sekolah', 'mulai', 'selesai', 'email', 'sekolah_id'];
-    protected $dates = ['mulai', 'selesai'];
+    protected $primaryKey = 'lampiran_id';
+    protected $fillable = ['sekolah_id', 'lampiran_id'];
 
     public function user()
     {
-    	return $this->belongsTo('App\User', 'user_id');
+    	return $this->hasOne('App\User', 'lampiran_id');
     }
 
     public function lampiran(){

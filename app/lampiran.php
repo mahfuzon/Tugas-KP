@@ -12,7 +12,7 @@ class lampiran extends Model
     protected $dates = ['mulai', 'selesai'];
 
     public function peserta(){
-        return $this->hasMany('App\peserta', 'lampiran_id');
+        return $this->hasOne('App\peserta', 'lampiran_id');
     }
 
     public function sekolah(){

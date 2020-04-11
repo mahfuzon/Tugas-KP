@@ -17,14 +17,28 @@ class pesertaController extends Controller
     public function index()
     {
         $peserta = peserta::all();
+        $lampiran = lampiran::all();
+        $user = User::all();
         $halaman = 'peserta';
-        $now = date('Y-m=d');
-        $peserta_keluar = peserta::where('selesai', $now)->get();
-        foreach ($peserta_keluar as $p) {
-            $p->delete();
-            User::where('id', $p->user_id)->delete();
+        $now = date('Y-m-d');
+        foreach ($peserta as $p) {
+            if($p->lampiran_selesai = $now){
+                $p->delete();
+            }
         }
-        return view('peserta', compact('peserta', 'halaman'));
+
+        foreach ($peserta as $p) {
+            if($p->lampiran_selesai = $now){
+                $p->delete();
+            }
+        }
+
+        foreach ($user as $u) {
+            if($p->lampiran_selesai = $now){
+                $u->delete();
+            }
+        }
+        return view('/peserta', compact('peserta', 'halaman'));
     }
 
     /**
@@ -50,22 +64,18 @@ class pesertaController extends Controller
         $lampiran->acc = 1;
         $lampiran->save();
 
-        $user = new \App\User;
-        $user->name = $lampiran->nama_peserta;
+        $peserta = new peserta;
+        $peserta->lampiran_id = $lampiran->id;
+        $peserta->save();
+
+        $user = new User;
+        $user->peserta_id = $lampiran->id;
         $user->email = $lampiran->email_peserta;
         $user->password = bcrypt('12345');
         $user->level = 'peserta';
         $user->save();
 
-        peserta::create([
-            'nama' => $lampiran->nama_peserta,
-            'asal_sekolah' => $lampiran->asal_sekolah,
-            'email' => $lampiran->email_peserta,
-            'mulai' => $lampiran->mulai,
-            'selesai' => $lampiran->selesai,
-            'lampiran_id' => $lampiran->id
-        ]);
-        return redirect('/home');
+        return redirect('/peserta');
     }
 
     /**
