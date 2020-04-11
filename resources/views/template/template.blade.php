@@ -15,6 +15,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('sb/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <!-- toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body id="page-top">
@@ -153,10 +156,14 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="#" id="logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     </ul>
@@ -217,6 +224,39 @@
     <script src="{{asset('sb/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('sb/js/demo/chart-pie-demo.js')}}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $('#logout').click(function () {
+            swal({
+                    title: "Yakin?",
+                    text: "Anda Akan Keluar dari Sistem",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        event.preventDefault();
+                        document.getElementById('logout-form').submit();
+                    }
+                });
+        });
+
+        @if(Session::has('sukses_tambah'))
+        toastr.success("{{Session::get('sukses_tambah')}}", "Sukses");
+        @endif
+
+        @if(Session::has('sukses_edit'))
+        toastr.success("{{Session::get('sukses_edit')}}", "Sukses");
+        @endif
+
+        @if(Session::has('sukses_hapus'))
+        swal("{{Session::get('sukses_hapus')}}", {
+            icon: "success",
+        });
+        @endif
+
+    </script>
     @yield('footer')
 </body>
 

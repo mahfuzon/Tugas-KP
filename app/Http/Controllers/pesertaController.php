@@ -51,17 +51,16 @@ class pesertaController extends Controller
         $lampiran->save();
 
         $user = new \App\User;
-        $user->name = $lampiran->nama;
-        $user->email = $lampiran->email;
+        $user->name = $lampiran->nama_peserta;
+        $user->email = $lampiran->email_peserta;
         $user->password = bcrypt('12345');
         $user->level = 'peserta';
         $user->save();
 
         peserta::create([
-            'user_id' => $user->id,
-            'nama' => $lampiran->nama,
+            'nama' => $lampiran->nama_peserta,
             'asal_sekolah' => $lampiran->asal_sekolah,
-            'email' => $lampiran->email,
+            'email' => $lampiran->email_peserta,
             'mulai' => $lampiran->mulai,
             'selesai' => $lampiran->selesai,
             'lampiran_id' => $lampiran->id

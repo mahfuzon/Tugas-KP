@@ -33,7 +33,7 @@ class LamaranController extends Controller
      */
     public function create()
     {
-        $sekolah = sekolah::pluck('nama', 'id');
+        $sekolah = sekolah::pluck('nama_sekolah', 'id');
         if(Auth::check() && Auth::user()->level == 'guru'){
             return view('daftar_guru', compact('sekolah'));
         }
@@ -80,10 +80,16 @@ class LamaranController extends Controller
             $mulai_daftar = $request->mulai;
             $selesai_kp = $request->selesai;
             $now = time();
-            for($i=0; $i<count($mulai_daftar);$i++){
-                $mulai = strtotime($request->mulai[$i]);
-                $selesai = strtotime($request->selesai[$i]);
+            if(Auth::check() && Auth()->User()->level == 'guru'){
+                for($i=0; $i<count($mulai_daftar);$i++){
+                    $mulai = strtotime($request->mulai[$i]);
+                    $selesai = strtotime($request->selesai[$i]);
+                }
+            }else{
+                $mulai = strtotime($request->mulai);
+                $selesai = strtotime($request->selesai);
             }
+          
             $selisih = ($selesai - $mulai)/86400;
             if($mulai_daftar < $date || $selesai_kp < $date){
                 Session::flash('flash_message', 'inputkan tanggal yang sesuai');
@@ -116,7 +122,8 @@ class LamaranController extends Controller
                         $lampiran->cv = $nama_cv;
                         $lampiran->save();
                     }
-                return redirect('/lamaran');
+                Session::flash('berhasil_daftar', 'Pendaftaran Berhasil Komfirmasi Akan Dikirim Via Email');
+                return redirect('/daftar');
         }else{
             $lampiran = new lampiran;
 
@@ -136,8 +143,9 @@ class LamaranController extends Controller
                 $lampiran->selesai = $request->selesai;  
                 $lampiran->acc = 0;
                 $lampiran->save();
-            }    
-        return redirect('/login');
+            }
+        Session::flash('berhasil_daftar', 'Pendaftaran Berhasil Komfirmasi Akan Dikirim Via Email');    
+        return redirect('/daftar');
         }
     }
 

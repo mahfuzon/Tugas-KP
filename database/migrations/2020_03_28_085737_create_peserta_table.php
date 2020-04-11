@@ -16,7 +16,6 @@ class CreatePesertaTable extends Migration
         Schema::create('peserta', function (Blueprint $table) {
             $table->bigIncrements('user_id');
             $table->bigInteger('lampiran_id');
-            $table->bigInteger('cv_id');
             $table->string('nama'); 
             $table->string('asal_sekolah');
             $table->string('email')->unique();

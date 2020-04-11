@@ -82,6 +82,5 @@
                 }
             });
     });
-    @include('flash_message')
 </script>
 @endsection

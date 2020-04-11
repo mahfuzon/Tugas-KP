@@ -39,8 +39,8 @@
                             <form class="user" method = "POST" action = "/postlamaran" enctype="multipart/form-data">
                             @csrf
                                 <div class="form-group">
-                                    <label for="nama">Nama</label>
-                                    <input type="text" class="form-control form-control-user" id="nama" name="nama" value="{{ old('nama') }}">
+                                    <label for="nama_peserta">Nama</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_peserta" name="nama_peserta" value="{{ old('nama_peserta') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah">Asal Sekolah</label>
@@ -48,8 +48,8 @@
                                         name="asal_sekolah" value="{{ old('asal_sekolah') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="{{ old('email') }}">
+                                    <label for="email_peserta">Email</label>
+                                    <input type="email" class="form-control form-control-user" id="email_peserta" name="email_peserta" value="{{ old('email_peserta') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">

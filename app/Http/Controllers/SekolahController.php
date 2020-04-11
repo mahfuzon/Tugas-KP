@@ -107,6 +107,7 @@ class SekolahController extends Controller
 
         $sekolah = sekolah::findOrFail($id);
         $sekolah->update($request->all());
+        Session::flash('sukses_edit', 'Data Berhasil di Update');
         return redirect('/sekolah');
     }
 

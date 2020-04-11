@@ -27,9 +27,9 @@
                     <tbody>
                         @foreach($lampiran as $lam)
                         <tr>
-                            <td>{{$lam->nama}}</td>
+                            <td>{{$lam->nama_peserta}}</td>
                             <td>{{$lam->asal_sekolah}}</td>
-                            <td>{{$lam->email}}</td>
+                            <td>{{$lam->email_peserta}}</td>
                             <td>{{$lam->mulai->format('d-M-Y')}}</td>
                             <td>{{$lam->selesai->format('d-M-Y')}}</td>
                             <td>
