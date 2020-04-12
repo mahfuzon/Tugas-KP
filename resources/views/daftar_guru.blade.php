@@ -39,11 +39,11 @@
                                     <input type="text" class="form-control form-control-user" id="nama_peserta[]" name="nama_peserta[]"
                                         value="{{ old('nama_peserta.0') }}">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="asal_sekolah[]">Asal Sekolah</label>
                                     <input type="text" class="form-control form-control-user" id="asal_sekolah[]"
                                         name="asal_sekolah[]" value="{{ old('asal_sekolah.0') }}">
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="email_peserta[]">Email</label>
                                     <input type="email" class="form-control form-control-user" id="email_peserta[]" name="email_peserta[]"
@@ -75,11 +75,11 @@
                                     <input type="text" class="form-control form-control-user" id="nama_peserta[]" name="nama_peserta[]"
                                         value="{{ old('nama_peserta.1') }}">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="asal_sekolah[]">Asal Sekolah</label>
                                     <input type="text" class="form-control form-control-user" id="asal_sekolah[]"
                                         name="asal_sekolah[]" value="{{ old('asal_sekolah.1') }}">
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="email_peserta[]">Email</label>
                                     <input type="text" class="form-control form-control-user" id="email_peserta[]" name="email_peserta[]"

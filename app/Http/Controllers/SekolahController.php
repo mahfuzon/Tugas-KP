@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\sekolah;
 use Session;
 use Validator;
+use App\User;
 class SekolahController extends Controller
 {
     /**
@@ -55,7 +56,13 @@ class SekolahController extends Controller
         }
 
 
-        sekolah::create($input);
+        $sekolah = sekolah::create($input);
+
+        $user = new User;
+        $user->email = $sekolah->email_guru;
+        $user->password = bcrypt('guru');
+        $user->level = 'guru';
+        $user->save();
         Session::flash('sukses_tambah', 'data berhasil di tambahkan');
         return redirect('/sekolah');
     }

@@ -19,7 +19,7 @@ class User extends Authenticatable
         'email', 'password', 'level', 'peserta_id'
     ];
 
-    protected $primaryKey = 'peserta_id';
+    
 
 
     public function peserta(){

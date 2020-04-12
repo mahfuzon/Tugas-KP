@@ -54,7 +54,7 @@ class LamaranController extends Controller
         if(Auth::check() && Auth::user()->level == 'guru'){
             $validator = Validator::make($input, [
                 'nama_peserta.*' => 'required|string|max:30',
-                'asal_sekolah.*' => 'required|string',
+                // 'asal_sekolah.*' => 'required|string',
                 'email_peserta.*' => 'required|email',
                 'mulai.*' => 'required|date',
                 'selesai.*' => 'required|date',
@@ -63,7 +63,7 @@ class LamaranController extends Controller
         }else{
             $validator = Validator::make($input, [
                 'nama_peserta' => 'required|string|max:30',
-                'asal_sekolah' => 'required|string',
+                // 'asal_sekolah' => 'required|string',
                 'email_peserta' => 'required|email',
                 'mulai' => 'required|date',
                 'selesai' => 'required|date',
@@ -99,18 +99,20 @@ class LamaranController extends Controller
                 return redirect('/daftar')->withInput();
             }else{
                 if(Auth::check() && Auth::user()->level == 'guru'){
-                    
+                    $user_login = Auth()->User()->email;
+                    $sekolah = sekolah::where('email_guru', $user_login)->first();
+
                     $nama_peserta = $request->nama_peserta;
-                    $asal_sekolah = $request->asal_sekolah;
+                    // $asal_sekolah = $request->asal_sekolah;
                     $email_peserta = $request->email_peserta;
                     $mulai = $request->mulai;
                     $selesai = $request->selesai;
                     $input = $request->file('cv');
 
-                    for($i = 0; $i<count($nama); $i++){
+                    for($i = 0; $i<count($nama_peserta); $i++){
                         $lampiran = new lampiran;
                         $lampiran->nama_peserta = $nama_peserta[$i];
-                        $lampiran->asal_sekolah = $asal_sekolah[$i];
+                        $lampiran->asal_sekolah = $sekolah->nama_sekolah;
                         $lampiran->email_peserta = $email_peserta[$i];
                         $lampiran->mulai = $mulai[$i];
                         $lampiran->selesai = $selesai[$i];

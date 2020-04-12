@@ -22,6 +22,7 @@
                             <th>Nama Sekolah</th>
                             <th>Alamat</th>
                             <th>Email</th>
+                            <th>Nama Guru Pembimbing</th>
                             <th>No. Telepon</th>
                             <th>Action</th>
                         </tr>
@@ -32,7 +33,8 @@
                         <tr>
                             <td>{{$s->nama_sekolah}}</td>
                             <td>{{$s->alamat_sekolah}}</td>
-                            <td>{{$s->email_sekolah}}</td>
+                            <td>{{$s->email_guru}}</td>
+                            <td>{{$s->nama_guru}}</td>
                             <td>{{$s->no_telepon_sekolah}}</td>
                             <td>
                                 <a href="/sekolah/edit/{{$s->id}}" onclick="event.preventDefault();
