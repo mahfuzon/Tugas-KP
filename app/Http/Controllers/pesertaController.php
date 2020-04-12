@@ -21,18 +21,18 @@ class pesertaController extends Controller
         $user = User::all();
         $halaman = 'peserta';
         $now = date('Y-m-d');
-        foreach ($peserta as $p) {
-            if($p->lampiran->selesai = $now){
-                $p->delete();
-            }
-        }
+        // foreach ($peserta as $p) {
+        //     if($p->lampiran->selesai = $now){
+        //         $p->delete();
+        //     }
+        // }
 
-        foreach ($user as $u) {
-            if($p->lampiran->selesai = $now){
-                $u->delete();
-            }
-        }
-        return view('/peserta', compact('peserta', 'halaman'));
+        // foreach ($user as $u) {
+        //     if($p->lampiran->selesai = $now){
+        //         $u->delete();
+        //     }
+        // }
+        return $peserta->lampiran->selesai;
     }
 
     /**
