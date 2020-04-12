@@ -22,19 +22,13 @@ class pesertaController extends Controller
         $halaman = 'peserta';
         $now = date('Y-m-d');
         foreach ($peserta as $p) {
-            if($p->lampiran_selesai = $now){
-                $p->delete();
-            }
-        }
-
-        foreach ($peserta as $p) {
-            if($p->lampiran_selesai = $now){
+            if($p->lampiran->selesai = $now){
                 $p->delete();
             }
         }
 
         foreach ($user as $u) {
-            if($p->lampiran_selesai = $now){
+            if($p->lampiran->selesai = $now){
                 $u->delete();
             }
         }
