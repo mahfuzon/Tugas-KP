@@ -23,15 +23,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="nama_guru" class="col-sm-2 col-form-label">Nama Guru Pembimbing:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nama_guru" name="nama_guru" value="{{old('nama_guru')}}">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="alamat_sekolah" class="col-sm-2 col-form-label">Alamat:</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" id="alamat_sekolah" rows="3" name="alamat_sekolah">{{old('alamat_sekolah')}}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email_sekolah" class="col-sm-2 col-form-label">Email:</label>
+                    <label for="email_guru" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email_sekolah" name="email_sekolah" value="{{old('email_sekolah')}}">
+                        <input type="email" class="form-control" id="email_guru" name="email_guru" value="{{old('email_guru')}}">
                     </div>
                 </div>
                 <div class="form-group row">

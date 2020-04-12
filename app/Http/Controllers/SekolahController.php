@@ -44,8 +44,9 @@ class SekolahController extends Controller
           // validasi
           $validator = Validator::make($input, [
             'nama_sekolah' => 'required|string',
+            'nama_guru' => 'required|string',
             'alamat_sekolah' => 'required|string',
-            'email_sekolah' => 'required|email|unique:sekolah',
+            'email_guru' => 'required|email|unique:sekolah',
             'no_telepon_sekolah' => 'required|numeric|unique:sekolah'
         ]);
 
