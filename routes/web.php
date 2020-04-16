@@ -31,7 +31,8 @@ Route::get('/sekolah/edit/{id}', 'SekolahController@edit');
 Route::post('/sekolah/update/{id}', 'SekolahController@update');
 Route::post('/sekolah/delete/{id}', 'SekolahController@destroy');
 Route::post('/sekolah/store', 'SekolahController@store');
-
 Route::post('/postAccount/{id}', 'pesertaController@post');
+
+Route::get('setting', 'UserController@index');
 
 
