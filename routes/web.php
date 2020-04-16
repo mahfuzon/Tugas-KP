@@ -33,6 +33,8 @@ Route::post('/sekolah/delete/{id}', 'SekolahController@destroy');
 Route::post('/sekolah/store', 'SekolahController@store');
 Route::post('/postAccount/{id}', 'pesertaController@post');
 
-Route::get('setting', 'UserController@index');
+Route::get('/change-password/{id}', 'UserController@edit');
+Route::post('/change-password/{id}', 'UserController@update');
+
 
 

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Validator;
+use Session;
+use Auth;
+use Hash;
 
 class UserController extends Controller
 {
@@ -13,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+       
     }
 
     /**
@@ -56,7 +61,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('change', compact('user'));
     }
 
     /**
@@ -68,7 +74,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'oldpassword' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+
+        if($validator->fails()){
+            return redirect('/change-password/'.$id)->withInput()->withErrors($validator);
+        }
+
+        $password_lama = Auth()->User()->password;
+        if(Hash::check($request->oldpassword, $password_lama)){
+            $user = User::findOrFail($id);
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            Session::flash('sukses_change', 'Password Berhasil di Update');
+            return redirect('/login');
+        }else{
+            Session::flash('flash_message', 'Password Yang Anda Masukkan Salah');
+            return redirect()->back()->withInput();
+        }
+
+
     }
 
     /**
