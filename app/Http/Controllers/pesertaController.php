@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\lampiran;
 use App\peserta;
+use App\Exports\pesertaExport;
+use Excel;
 
 class pesertaController extends Controller
 {
@@ -46,6 +48,11 @@ class pesertaController extends Controller
     public function create()
     {
         //
+    }
+
+    public function export(){
+        $peserta = peserta::all();
+        return Excel::download(new pesertaExport, 'peserta.xls');
     }
 
     /**

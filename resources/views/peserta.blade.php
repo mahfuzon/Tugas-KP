@@ -11,6 +11,16 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
+        <!-- Tobol eksport excell -->
+        <a class="btn btn-success btn-md" href="/peserta/export" onclick="event.preventDefault();
+                                                     document.getElementById('export').submit();" title="export"
+                                    style="float:right;margin-bottom:20px;">
+                                    Export
+                                </a>
+                                <form action="/peserta/export" method="GET" id="export">
+                                    @csrf
+                                </form>
+        <!-- End -->
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
