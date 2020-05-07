@@ -42,16 +42,36 @@
                             </td>
                             <td>
                                 @if($lam->acc == 0)
-                                <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
-                                                     document.getElementById('acc').submit();" title="accept"
-                                    style='float:left; margin-left:20px;'>
-                                    <i class="fas fa-user-check" style="color:green;"></i>
-                                </a>
-                                <form action="/postAccount/{{$lam->id}}" method="POST" id="acc">
-                                    @csrf
-                                </form>
+                                    @if(Auth::check() && Auth()->User()->level == 'admin')
+                                    <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
+                                                            document.getElementById('delete').submit();" title="accept"
+                                        style='float:left; margin-left:20px;'>
+                                        <i class="fas fa-user-check" style="color:green;"></i>
+                                    </a>
+                                    <form action="/postAccount/{{$lam->id}}" method="POST" id="delete">
+                                        @csrf
+                                    </form>
+                                    @else
+                                    <a href="/lamaran_edit/{{$lam->id}}" onclick="event.preventDefault();
+                                                            document.getElementById('edit').submit();" title="edit"
+                                        style='float:left; margin-left:10px;'>
+                                        <i class="fas fa-edit" style="color:blue;"></i>
+                                    </a>
+                                    <form action="/lamaran_edit/{{$lam->id}}" method="POST" id="edit">
+                                        @csrf
+                                    </form>
+
+                                    <a href="/lamaran_delete/{{$lam->id}}" onclick="event.preventDefault();
+                                                            document.getElementById('acc').submit();" title="delete"
+                                        style='float:left; margin-left:20px;'>
+                                        <i class="fas fa-user-check" style="color:red;"></i>
+                                    </a>
+                                    <form action="/lamaran_delete/{{$lam->id}}" method="POST" id="acc">
+                                        @csrf
+                                    </form>
+                                    @endif
                                 @else
-                                <p>acc</p>
+                                    <p>acc</p>
                                 @endif
                             </td>
                         </tr>

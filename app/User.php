@@ -23,7 +23,7 @@ class User extends Authenticatable
 
 
     public function peserta(){
-        return $this->belongsTo('App\peserta', 'peserta_id');
+        return $this->hasOne('App\peserta', 'user_id');
     }
 
     /**

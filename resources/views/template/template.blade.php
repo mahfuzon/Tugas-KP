@@ -66,53 +66,46 @@
                     @endif
                 @endif
             @endif
-            @if(isset($halaman) && $halaman == 'peserta')
-            <li class="nav-item active">
-                <a class="nav-link" href="/peserta">
-                    <i class="fas fa-users"></i>
-                    <span>Peserta</span>
-                </a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="/peserta">
-                    <i class="fas fa-users"></i>
-                    <span>Peserta</span>
-                </a>
-            </li>
-            @endif
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            @if(isset($halaman) && $halaman == 'lamaran')
-            <li class="nav-item active">
-                <a class="nav-link" href="/lamaran">
-                    <i class="fas fa-envelope"></i>
-                    <span>Submision</span>
-                </a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="/lamaran">
-                    <i class="fas fa-envelope"></i>
-                    <span>Submision</span>
-                </a>
-            </li>
+            @if(Auth::check())
+                @if(Auth()->User()->level == 'guru' || Auth()->User()->level == 'admin')
+                    @if(isset($halaman) && $halaman == 'lamaran')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/lamaran">
+                                <i class="fas fa-envelope"></i>
+                                <span>Submision</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/lamaran">
+                                <i class="fas fa-envelope"></i>
+                                <span>Submision</span>
+                            </a>
+                        </li>
+                    @endif
+                @endif
             @endif
 
-            @if(isset($halaman) && $halaman == 'sekolah')
-            <li class="nav-item active">
-                <a class="nav-link" href="/sekolah">
-                    <i class="fas fa-school"></i>
-                    <span>Sekolah</span>
-                </a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="/sekolah">
-                    <i class="fas fa-school"></i>
-                    <span>Sekolah</span>
-                </a>
-            </li>
+            @if(Auth::check())
+                @if(Auth()->User()->level == 'admin')
+                    @if(isset($halaman) && $halaman == 'sekolah')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/sekolah">
+                                <i class="fas fa-school"></i>
+                                <span>Sekolah</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/sekolah">
+                                <i class="fas fa-school"></i>
+                                <span>Sekolah</span>
+                            </a>
+                        </li>
+                    @endif
+                @endif
             @endif
 
             <!-- Divider -->

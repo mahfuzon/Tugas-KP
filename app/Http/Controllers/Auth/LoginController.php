@@ -53,6 +53,8 @@ class LoginController extends Controller
                 return redirect()->route('admin.home');
             }else if(auth()->user()->level == 'peserta'){
                 return redirect()->route('home');
+            }else{
+                return redirect('/home');
             }
         }else{
             return redirect()->route('login')

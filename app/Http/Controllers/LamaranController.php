@@ -20,8 +20,13 @@ class LamaranController extends Controller
      */
     public function index()
     {
+        $email = Auth()->User()->email;
         $cv = cv::all();
         $lampiran = lampiran::all();
+        $sekolah = sekolah::where('email_guru',$email)->get();
+        foreach($sekolah as $s){
+            
+        }
         $halaman = "lamaran";
         return view('lamaran', compact('halaman','lampiran','cv'));
     }
