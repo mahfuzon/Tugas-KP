@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">CV:</label>
+                                    <label for="cv">CV:</label>
                                     <input type="file" class="form-control form-control-user" id="cv" name="cv" value="{{ old('cv') }}">
                                 </div>
                               <button type="submit" class="btn btn-primary">Daftar</button>
