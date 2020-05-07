@@ -26,6 +26,10 @@ class User extends Authenticatable
         return $this->hasOne('App\peserta', 'user_id');
     }
 
+    public function sekolah(){
+        return $this->hasOne('App\sekolah', 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

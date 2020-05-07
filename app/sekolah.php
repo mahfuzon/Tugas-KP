@@ -12,4 +12,8 @@ class sekolah extends Model
     public function peserta(){
         return $this->hasMany('App\peserta', 'sekolah_id');
     }
+
+    public function user(){
+        return $this->belongsTo('App\sekolah', 'user_id');
+    }
 }

@@ -15,6 +15,7 @@ class TableSekolah extends Migration
     {
         Schema::create('sekolah', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('nama_guru');
             $table->string('nama_sekolah');
             $table->text('alamat_sekolah');
