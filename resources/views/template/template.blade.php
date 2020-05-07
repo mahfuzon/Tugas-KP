@@ -47,6 +47,25 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
+            @if(Auth::check())
+                @if(Auth()->User()->level == 'guru' || Auth()->User()->level == 'admin')
+                    @if(isset($halaman) && $halaman == 'peserta')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/peserta">
+                                <i class="fas fa-users"></i>
+                                <span>Peserta</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/peserta">
+                                <i class="fas fa-users"></i>
+                                <span>Peserta</span>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+            @endif
             @if(isset($halaman) && $halaman == 'peserta')
             <li class="nav-item active">
                 <a class="nav-link" href="/peserta">
