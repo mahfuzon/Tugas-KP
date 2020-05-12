@@ -52,21 +52,12 @@
                                         @csrf
                                     </form>
                                     @else
-                                    <a href="/lamaran_edit/{{$lam->id}}" onclick="event.preventDefault();
-                                                            document.getElementById('edit').submit();" title="edit"
-                                        style='float:left; margin-left:5px;'>
-                                        <i class="fas fa-edit" style="color:blue;"></i>
-                                    </a>
-                                    <form action="/lamaran_edit/{{$lam->id}}" method="POST" id="edit">
-                                        @csrf
-                                    </form>
-
-                                    <a href="/lamaran_delete/{{$lam->id}}" onclick="event.preventDefault();
-                                                            document.getElementById('acc').submit();" title="delete"
+                                    <a href="/lamaran/delete/{{$lam->id}}" onclick="event.preventDefault();
+                                                            document.getElementById('delete').submit();" title="delete"
                                         style='float:left; margin-left:20px;'>
                                         <i class="fas fa-trash-alt" style="color:red;"></i>
                                     </a>
-                                    <form action="/lamaran_delete/{{$lam->id}}" method="POST" id="acc">
+                                    <form action="/lamaran/delete/{{$lam->id}}" method="POST" id="delete">
                                         @csrf
                                     </form>
                                     @endif

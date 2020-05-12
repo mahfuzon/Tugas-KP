@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lamaran', 'LamaranController@index')->middleware('auth');
+Route::post('/lamaran/delete/{id}', 'LamaranController@destroy');
 Route::get('/peserta', 'pesertaController@index');
 Route::get('/peserta/export', 'pesertaController@export');
 Route::post('/postlamaran', 'LamaranController@store');

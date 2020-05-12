@@ -204,6 +204,9 @@ class LamaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $lampiran = lampiran::findOrFail($id);
+        $lampiran->delete();
+        Session::flash('sukses_hapus', 'data berhasil di hapus');
+        return redirect('/lamaran');
     }
 }
