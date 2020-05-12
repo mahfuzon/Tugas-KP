@@ -135,17 +135,7 @@
       <form class="login-form" method="POST" action="{{ route('login') }}">
           @csrf
         <input type="email" name="email" placeholder="E-mail Address" required />
-        @error('email')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
         <input type="password" name="password" placeholder="Password" required />
-        @error('password')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
         <button>login</button>
       </form>
     </div>

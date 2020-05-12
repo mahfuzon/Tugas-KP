@@ -14,7 +14,6 @@ class TableSekolah extends Migration
     public function up()
     {
         Schema::create('sekolah', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('nama_guru');
             $table->string('nama_sekolah');

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\lampiran;
-use App\cv;
 use Validator;
 use Session;
 use Storege;
@@ -20,15 +19,15 @@ class LamaranController extends Controller
      */
     public function index()
     {
-        $email = Auth()->User()->email;
-        $cv = cv::all();
-        $lampiran = lampiran::all();
-        $sekolah = sekolah::where('email_guru',$email)->get();
-        foreach($sekolah as $s){
-            
-        }
         $halaman = "lamaran";
-        return view('lamaran', compact('halaman','lampiran','cv'));
+        if(Auth()->User()->level == 'guru'){
+            $id = Auth()->User()->id;
+            $sekolah = sekolah::findOrFail($id);
+            $lampiran = lampiran::where('asal_sekolah', $sekolah->nama_sekolah)->get();
+            return view('lamaran', compact('halaman','lampiran'));
+        }
+        $lampiran = lampiran::all();
+        return view('lamaran', compact('halaman', 'lampiran'));
     }
 
     /**
@@ -38,7 +37,6 @@ class LamaranController extends Controller
      */
     public function create()
     {
-        $sekolah = sekolah::pluck('nama_sekolah', 'id');
         if(Auth::check() && Auth::user()->level == 'guru'){
             return view('daftar_guru', compact('sekolah'));
         }

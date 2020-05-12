@@ -8,6 +8,7 @@ use App\lampiran;
 use App\peserta;
 use App\Exports\pesertaExport;
 use Excel;
+use Session;
 
 class pesertaController extends Controller
 {
@@ -63,22 +64,22 @@ class pesertaController extends Controller
      */
     public function post($id)
     {
-        $lampirans = lampiran::all();
-        $lampiran = $lampirans->find($id);
+        $lampiran = lampiran::findOrFail($id);
         $lampiran->acc = 1;
         $lampiran->save();
 
-        $peserta = new peserta;
-        $peserta->lampiran_id = $lampiran->id;
-        $peserta->save();
-
         $user = new User;
-        $user->peserta_id = $lampiran->id;
         $user->email = $lampiran->email_peserta;
         $user->password = bcrypt('12345');
         $user->level = 'peserta';
         $user->save();
 
+        $peserta = new peserta;
+        $peserta->user_id = $user->id;
+        $peserta->lampiran_id = $lampiran->id;
+        $peserta->save();
+
+        Session::flash('sukses_tambah', 'User berhasil dibuat');
         return redirect('/peserta');
     }
 

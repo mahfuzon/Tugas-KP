@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Validator;
    
 class LoginController extends Controller
 {
@@ -42,15 +43,19 @@ class LoginController extends Controller
     {   
         $input = $request->all();
    
-        $this->validate($request, [
+        $validator = Validator::make($input, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        if($validator->fails()){
+            return redirect('/login')->withInput()->withErrors($validator);
+        }
    
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->level == 'admin') {
-                return redirect()->route('admin.home');
+                return redirect()->route('home');
             }else if(auth()->user()->level == 'peserta'){
                 return redirect()->route('home');
             }else{

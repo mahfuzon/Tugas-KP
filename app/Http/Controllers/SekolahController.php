@@ -55,16 +55,24 @@ class SekolahController extends Controller
             return redirect('/sekolah/create/')->withInput()->withErrors($validator);
         }
 
-
-        $sekolah = sekolah::create($input);
-
         $user = new User;
-        $user->email = $sekolah->email_guru;
+        $user->email = $request->email_guru;
         $user->password = bcrypt('guru');
         $user->level = 'guru';
         $user->save();
+
+        $sekolah = sekolah::create([
+            'nama_sekolah' => $request->nama_sekolah,
+            'nama_guru' => $request->nama_guru,
+            'alamat_sekolah' => $request->alamat_sekolah,
+            'email_guru' => $request->email_guru,
+            'no_telepon_sekolah' => $request->no_telepon_sekolah,
+            'user_id' => $user->id,]);
+
         Session::flash('sukses_tambah', 'data berhasil di tambahkan');
         return redirect('/sekolah');
+
+  
     }
 
     /**

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class sekolah extends Model
 {
     protected $table = 'sekolah';
-    protected $fillable = ['nama_sekolah', 'nama_guru','alamat_sekolah', 'email_guru', 'no_telepon_sekolah'];
+    protected $primaryKey = 'user_id';
+    protected $fillable = ['nama_sekolah', 'nama_guru','alamat_sekolah', 'email_guru', 'no_telepon_sekolah', 'user_id'];
 
     public function peserta(){
         return $this->hasMany('App\peserta', 'sekolah_id');
