@@ -21,7 +21,6 @@ class CretateTableLampiran extends Migration
             $table->date('mulai');
             $table->date('selesai');
             $table->boolean('acc')->nullable();
-            $table->string('cv')->nullable();
             $table->timestamps();
         });
     }

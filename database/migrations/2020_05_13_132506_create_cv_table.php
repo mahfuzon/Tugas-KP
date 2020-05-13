@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePesertaTable extends Migration
+class CreateCvTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePesertaTable extends Migration
      */
     public function up()
     {
-        Schema::create('peserta', function (Blueprint $table) {
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('lampiran_id');
-            $table->bigInteger('sekolah_id')->nullable();
+        Schema::create('cv', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('cv');
+            $table->bigInteger('lampiran_id')->unsigned();
+            $table->foreign('lampiran_id')->references('id')->on('lampiran')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreatePesertaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('peserta');
+        Schema::dropIfExists('cv');
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class peserta extends Model
 {
     protected $table = "peserta";
-    protected $primaryKey = 'user_id';
     protected $fillable = ['user_id','sekolah_id', 'lampiran_id'];
 
     public function user()

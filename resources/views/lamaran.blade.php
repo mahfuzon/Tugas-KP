@@ -43,14 +43,22 @@
                             <td>
                                 @if($lam->acc == 0)
                                     @if(Auth::check() && Auth()->User()->level == 'admin')
-                                    <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
-                                                            document.getElementById('delete').submit();" title="accept"
-                                        style='float:left; margin-left:20px;'>
-                                        <i class="fas fa-user-check" style="color:green;"></i>
-                                    </a>
-                                    <form action="/postAccount/{{$lam->id}}" method="POST" id="delete">
-                                        @csrf
-                                    </form>
+                                        <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
+                                                                document.getElementById('delete').submit();" title="accept"
+                                            style='float:left; margin-left:10px;'>
+                                            <i class="fas fa-user-check" style="color:green;"></i>
+                                        </a>
+                                        <form action="/postAccount/{{$lam->id}}" method="POST" id="delete">
+                                            @csrf
+                                        </form>
+
+                                        <a href="#" lamaran_id="{{$lam->id}}" title="delete" style='float:left; margin-left:10px;'
+                                            class="delete">
+                                            <i class="fas fa-trash-alt" style="color:red;"></i>
+                                        </a>
+                                        <form action="/lamaran/delete/{{$lam->id}}" method="post" id="delete">
+                                            @csrf
+                                        </form>
                                     @else
                                     <a href="/lamaran/delete/{{$lam->id}}" onclick="event.preventDefault();
                                                             document.getElementById('delete').submit();" title="delete"
@@ -79,15 +87,23 @@
 
 @section('footer')
 <script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('New Account ')
-        modal.find('.modal-body input')
-    })
+    $('.delete').click(function () {
+        const lamaran_id = $(this).attr('lamaran_id');
+        swal({
+                title: "Yakin?",
+                text: "Kamu menghapus data dengan id "+lamaran_id+"!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    event.preventDefault();
+                    document.getElementById('delete').submit();
+                }
+            });
+    });
 
 </script>
 @endsection
+
