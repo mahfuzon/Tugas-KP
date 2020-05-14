@@ -25,10 +25,10 @@ class LampiranController extends Controller
             $id = Auth()->User()->id;
             $sekolah = sekolah::findOrFail($id);
             $lampiran = lampiran::where('asal_sekolah', $sekolah->nama_sekolah)->get();
-            return view('lamaran', compact('halaman','lampiran'));
+            return view('lampiran.lamaran', compact('halaman','lampiran'));
         }
         $lampiran = lampiran::all();
-        return view('lamaran', compact('halaman', 'lampiran'));
+        return view('lampiran.lamaran', compact('halaman', 'lampiran'));
     }
 
     /**

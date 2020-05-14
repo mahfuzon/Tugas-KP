@@ -112,16 +112,16 @@ class SekolahController extends Controller
         // validasi
         $validator = Validator::make($input, [
             'nama_sekolah' => 'required|string',
-            'alamat_sekolah' => 'required|string',
-            'email_sekolah' => 'required|email|unique:sekolah,email_sekolah,'.$id,
-            'no_telepon_sekolah' => 'required|numeric|unique:sekolah,no_telepon_sekolah,'.$id
+            'alamat' => 'required|string',
+            'email_guru' => 'required|email|unique:sekolah,email_guru,'.$id,
+            'hp_guru' => 'required|numeric|unique:sekolah,hp_guru,'.$id
         ]);
 
         if($validator->fails()){
-            return redirect('/sekolah/edit/'.$id)->withInput()->withErrors($validator);
+            return redirect()->back()->withInput()->withErrors($validator);
         }
 
-        $sekolah = sekolah::findOrFail($id);
+        $sekolah = sekolah::find($id);
         $sekolah->update($request->all());
         Session::flash('sukses_edit', 'Data Berhasil di Update');
         return redirect('/sekolah');

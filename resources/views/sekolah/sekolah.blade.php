@@ -37,19 +37,19 @@
                             <td>{{$s->guru_pembimbing}}</td>
                             <td>{{$s->hp_guru}}</td>
                             <td>
-                                <a href="/sekolah/edit/{{$s->user_id}}" onclick="event.preventDefault();
-                                                     document.getElementById('edit').submit();" title="edit"
+                                <a href="/sekolah/edit/{{$s->id}}" onclick="event.preventDefault();
+                                                     document.getElementById('edit_{{$s->id}}').submit();" title="edit"
                                     style="float:left;margin-left:10px;">
                                     <i class="fas fa-edit" style="color:blue;"></i>
                                 </a>
-                                <form action="/sekolah/edit/{{$s->user_id}}" method="GET" id="edit">
+                                <form action="/sekolah/edit/{{$s->id}}" method="GET" id="edit_{{$s->id}}">
                                     @csrf
                                 </form>
-                                <a href="#" sekolah_id="{{$s->user_id}}" title="delete" style='float:left; margin-left:20px;'
+                                <a href="#" sekolah_id="{{$s->id}}" title="delete" style='float:left; margin-left:20px;'
                                     class="delete">
                                     <i class="fas fa-trash-alt" style="color:red;"></i>
                                 </a>
-                                <form action="/sekolah/delete/{{$s->user_id}}" method="post" id="delete">
+                                <form action="/sekolah/delete/{{$s->id}}" method="post" id="delete_{{$s->id}}">
                                     @csrf
                                 </form>
                             </td>
@@ -64,5 +64,26 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+<script>
+      $('.delete').click(function () {
+        const sekolah_id = $(this).attr('sekolah_id');
+        swal({
+                title: "Yakin?",
+                text: "Kamu menghapus data dengan id "+sekolah_id+"!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    event.preventDefault();
+                    document.getElementById('delete_'+sekolah_id).submit();
+                }
+            });
+    });
+</script>
 @endsection
 

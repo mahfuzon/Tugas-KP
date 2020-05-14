@@ -38,7 +38,7 @@ class pesertaController extends Controller
             }
             
         }
-        return view('/peserta', compact('peserta', 'halaman'));
+        return view('peserta.peserta', compact('peserta', 'halaman'));
     }
 
     /**
@@ -102,7 +102,10 @@ class pesertaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $peserta = peserta::findOrFail($id);
+        $mulai = date('Y-m-d');
+        $halaman = 'peserta';
+        return view('peserta.edit', compact('halaman', 'peserta', 'mulai'));
     }
 
     /**
@@ -114,7 +117,15 @@ class pesertaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    
+        $peserta = peserta::findOrFail($id);
+        $lampiran = lampiran::where('id', $peserta->lampiran_id)->firstOrFail();
+        $user = user::where('id', $peserta->user_id)->firstOrFail();
+        $user->email = $request->email_peserta;
+        $user->save();
+        
+        $lampiran->update($request->all());
+        return 'ok';
     }
 
     /**

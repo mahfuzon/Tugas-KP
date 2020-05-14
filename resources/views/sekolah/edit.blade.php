@@ -15,7 +15,7 @@
         <div class="card-body">
             @include('errors')
             <form action="/sekolah/update/{{$sekolah->id}}" method="POST">
-            @csrf
+                @csrf
                 <div class="form-group row">
                     <label for="nama_sekolah" class="col-sm-2 col-form-label">Nama Sekolah:</label>
                     <div class="col-sm-10">
@@ -23,21 +23,21 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="alamat_sekolah" class="col-sm-2 col-form-label">Alamat:</label>
+                    <label for="alamat" class="col-sm-2 col-form-label">Alamat Sekolah:</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="alamat_sekolah" rows="3" name="alamat_sekolah">@if($errors->any()){{old('alamat_sekolah')}}@else{{$sekolah->alamat_sekolah}}@endif</textarea>
+                        <textarea class="form-control" id="alamat" rows="3" name="alamat">@if($errors->any()){{old('alamat')}}@else{{$sekolah->alamat}}@endif</textarea>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email_sekolah" class="col-sm-2 col-form-label">Email:</label>
+                    <label for="email_guru" class="col-sm-2 col-form-label">Email Guru:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email_sekolah" name="email_sekolah" value="@if($errors->any()){{old('email_sekolah')}}@else{{$sekolah->email_sekolah}}@endif">
+                        <input type="email" class="form-control" id="email_guru" name="email_guru" value="@if($errors->any()){{old('email_guru')}}@else{{$sekolah->email_guru}}@endif">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="no_telepon_sekolah" class="col-sm-2 col-form-label">No. Telepon:</label>
+                    <label for="hp_guru" class="col-sm-2 col-form-label">No. Hp Guru</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_telepon_sekolah" name="no_telepon_sekolah" value="@if($errors->any()){{old('no_telepon_sekolah')}}@else{{$sekolah->no_telepon_sekolah}}@endif">
+                        <input type="text" class="form-control" id="hp_guru" name="hp_guru" value="@if($errors->any()){{old('hp_guru')}}@else{{$sekolah->hp_guru}}@endif">
                     </div>
                 </div>
                 <div class="form-group row">
