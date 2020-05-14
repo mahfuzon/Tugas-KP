@@ -11,6 +11,12 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
+            @if(Auth()->user()->level == 'guru')
+            <div>
+                <a href="/daftar" class="btn btn-success btn-md" style="float:right;margin-bottom:20px;">+
+                    Tambah Data</a>
+            </div>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -35,7 +41,7 @@
                             <td>
                                 <a href="/cv/{{$lam->id}}"
                                     onclick="event.preventDefault();
-                                                     document.getElementById('{{$lam->id}}').submit();">{{$lam->cv}}</a>
+                                                     document.getElementById('{{$lam->id}}').submit();">{{$lam->cv->cv}}</a>
                                 <form action="/cv/{{$lam->id}}" method="post" id="{{$lam->id}}" style="display:none;">
                                     @csrf
                                 </form>
@@ -44,11 +50,11 @@
                                 @if($lam->acc == 0)
                                     @if(Auth::check() && Auth()->User()->level == 'admin')
                                         <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
-                                                                document.getElementById('delete').submit();" title="accept"
+                                                                document.getElementById('accept_{{$lam->id}}').submit();" title="accept"
                                             style='float:left; margin-left:10px;'>
                                             <i class="fas fa-user-check" style="color:green;"></i>
                                         </a>
-                                        <form action="/postAccount/{{$lam->id}}" method="POST" id="delete">
+                                        <form action="/postAccount/{{$lam->id}}" method="POST" id="accept_{{$lam->id}}">
                                             @csrf
                                         </form>
 
@@ -56,16 +62,14 @@
                                             class="delete">
                                             <i class="fas fa-trash-alt" style="color:red;"></i>
                                         </a>
-                                        <form action="/lamaran/delete/{{$lam->id}}" method="post" id="delete">
+                                        <form action="/lamaran/delete/{{$lam->id}}" method="post" id="delete_{{$lam->id}}">
                                             @csrf
                                         </form>
                                     @else
-                                    <a href="/lamaran/delete/{{$lam->id}}" onclick="event.preventDefault();
-                                                            document.getElementById('delete').submit();" title="delete"
-                                        style='float:left; margin-left:20px;'>
+                                    <a href="#"  lamaran_id="{{$lam->id}}" title="delete" style='float:left; margin-left:20px;' class="delete">
                                         <i class="fas fa-trash-alt" style="color:red;"></i>
                                     </a>
-                                    <form action="/lamaran/delete/{{$lam->id}}" method="POST" id="delete">
+                                    <form action="/lamaran/delete/{{$lam->id}}" method="POST" id="delete_{{$lam->id}}">
                                         @csrf
                                     </form>
                                     @endif
@@ -99,7 +103,7 @@
             .then((willDelete) => {
                 if (willDelete) {
                     event.preventDefault();
-                    document.getElementById('delete').submit();
+                    document.getElementById('delete_'+lamaran_id).submit();
                 }
             });
     });

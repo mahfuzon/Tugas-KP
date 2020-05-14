@@ -139,18 +139,18 @@ return [
             'string' => 'Kolom Nama Sekolah Harus Berupa Text',
         ],
 
-        'alamat_sekolah' => [
+        'alamat' => [
             'required' => 'Kolom Alamat Harus Diisi',
             'string' => 'Kolom Alamat Harus Dalam Bentuk Text'
         ],
 
-        'email_sekolah' => [
+        'email_guru' => [
             'required' => 'Kolom Email Harus Diisi',
             'unique' => 'Email yang Anda Masukkan Telah Digunakan',
             'email' => 'Tambahkan @ Pada Email Anda '
         ],
 
-        'no_telepon_sekolah' => [
+        'hp_guru' => [
             'required' => 'Kolom No. Telepon Harus Diisi',
             'unique' => 'No. Telepon yang Anda Masukkan Telah Digunakan Sebelumnya',
             'numeric' => 'Kolom Telepon Harus Diisi dengan Angka'
@@ -158,6 +158,11 @@ return [
 
         'mulai' => [
             'required' => 'Tanggal Mulai Wajib Diisi',
+            'date' => 'Inputkan Tanggal',
+        ],
+
+        'selesai' => [
+            'required' => 'Tanggal Selesai Wajib Diisi',
             'date' => 'Inputkan Tanggal',
         ]
     ],

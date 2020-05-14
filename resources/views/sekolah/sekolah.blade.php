@@ -32,10 +32,10 @@
                         @foreach($sekolah as $s)
                         <tr>
                             <td>{{$s->nama_sekolah}}</td>
-                            <td>{{$s->alamat_sekolah}}</td>
+                            <td>{{$s->alamat}}</td>
                             <td>{{$s->email_guru}}</td>
-                            <td>{{$s->nama_guru}}</td>
-                            <td>{{$s->no_telepon_sekolah}}</td>
+                            <td>{{$s->guru_pembimbing}}</td>
+                            <td>{{$s->hp_guru}}</td>
                             <td>
                                 <a href="/sekolah/edit/{{$s->user_id}}" onclick="event.preventDefault();
                                                      document.getElementById('edit').submit();" title="edit"
@@ -66,23 +66,3 @@
 </div>
 @endsection
 
-@section('footer')
-<script>
-    $('.delete').click(function () {
-        const sekolah_id = $(this).attr('sekolah_id');
-        swal({
-                title: "Yakin?",
-                text: "Kamu menghapus data dengan id "+sekolah_id+"!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    event.preventDefault();
-                    document.getElementById('delete').submit();
-                }
-            });
-    });
-</script>
-@endsection

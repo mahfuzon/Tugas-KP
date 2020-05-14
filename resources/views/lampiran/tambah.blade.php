@@ -1,49 +1,50 @@
 @extends('template.template')
 
 @section('title')
-    <title>Tambah Sekolah</title>
+    <title>Tambah Siswa</title>
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Sekolah</h1>
+        <h1 class="h3 mb-0 text-gray-800">Tambah Siswa</h1>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
         @include('errors')
-            <form action="/sekolah/store" method="POST">
+        @include('flash_message')
+            <form action="/postlamaran" method="POST" enctype="multipart/form-data">
             @csrf
                 <div class="form-group row">
-                    <label for="nama_sekolah" class="col-sm-2 col-form-label">Nama Sekolah:</label>
+                    <label for="nama_peserta" class="col-sm-2 col-form-label">Nama Siswa:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama_sekolah" name="nama_sekolah" value="{{old('nama_sekolah')}}">
+                        <input type="text" class="form-control" id="nama_peserta" name="nama_peserta" value="{{old('nama_peserta')}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="guru_pembimbing" class="col-sm-2 col-form-label">Nama Guru Pembimbing:</label>
+                    <label for="email_peserta" class="col-sm-2 col-form-label">Email Peserta:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="guru_pembimbing" name="guru_pembimbing" value="{{old('guru_pembimbing')}}">
+                        <input type="email" class="form-control" id="email_peserta" name="email_peserta" value="{{old('email_peserta')}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Alamat:</label>
+                    <label for="mulai" class="col-sm-2 col-form-label">Tanggal Mulai:</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="alamat" rows="3" name="alamat">{{old('alamat')}}</textarea>
+                        <input type="date" class="form-control" id="mulai" name="mulai" value="{{old('mulai')}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="email_guru" class="col-sm-2 col-form-label">Email:</label>
+                    <label for="selesai" class="col-sm-2 col-form-label">Tanggal Selesai:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email_guru" name="email_guru" value="{{old('email_guru')}}">
+                        <input type="date" class="form-control" id="selesai" name="selesai" value="{{old('selesai')}}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="no_telepon_sekolah" class="col-sm-2 col-form-label">No. Telepon Guru:</label>
+                    <label for="cv" class="col-sm-2 col-form-label">Curiculum Vitae:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="hp_guru" name="hp_guru" value="{{old('hp_guru')}}">
+                        <input type="file" class="form-control" id="cv" name="cv" value="{{old('cv')}}">
                     </div>
                 </div>
                 <div class="form-group row">

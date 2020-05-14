@@ -163,7 +163,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/change-password/{{Auth()->User()->id}}">
+                                <a class="dropdown-item" href="/change-password/">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Change Password
                                 </a>

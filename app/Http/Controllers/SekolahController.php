@@ -45,10 +45,10 @@ class SekolahController extends Controller
           // validasi
           $validator = Validator::make($input, [
             'nama_sekolah' => 'required|string',
-            'nama_guru' => 'required|string',
-            'alamat_sekolah' => 'required|string',
+            'guru_pembimbing' => 'required|string',
+            'alamat' => 'required|string',
             'email_guru' => 'required|email|unique:sekolah',
-            'no_telepon_sekolah' => 'required|numeric|unique:sekolah'
+            'hp_guru' => 'required|numeric|unique:sekolah'
         ]);
 
         if($validator->fails()){
@@ -63,10 +63,10 @@ class SekolahController extends Controller
 
         $sekolah = sekolah::create([
             'nama_sekolah' => $request->nama_sekolah,
-            'nama_guru' => $request->nama_guru,
-            'alamat_sekolah' => $request->alamat_sekolah,
+            'guru_pembimbing' => $request->guru_pembimbing,
+            'alamat' => $request->alamat,
             'email_guru' => $request->email_guru,
-            'no_telepon_sekolah' => $request->no_telepon_sekolah,
+            'hp_guru' => $request->hp_guru,
             'user_id' => $user->id,]);
 
         Session::flash('sukses_tambah', 'data berhasil di tambahkan');

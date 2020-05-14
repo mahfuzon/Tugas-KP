@@ -4,15 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class cv extends Model
+class Cv extends Model
 {
-    protected $table = "cv";
-    protected $primaryKey = 'lampiran_id';
+    protected $table = 'cv';
     protected $fillable = ['cv', 'lampiran_id'];
 
-    // public function lampiran()
-    // {
-    // 	return $this->belongsTo('App\lampiran', 'lampiran_id');
-    // }
-
+    public function lampiran()
+    {
+        return $this->belongsTo('App\lampiran');
+    }
 }

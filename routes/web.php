@@ -18,12 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/lamaran', 'LamaranController@index')->middleware('auth');
-Route::post('/lamaran/delete/{id}', 'LamaranController@destroy');
+Route::get('/lamaran', 'LampiranController@index')->middleware('auth');
+Route::post('/lamaran/delete/{id}', 'LampiranController@destroy');
 Route::get('/peserta', 'pesertaController@index');
 Route::get('/peserta/export', 'pesertaController@export');
-Route::post('/postlamaran', 'LamaranController@store');
-Route::get('/daftar', 'LamaranController@create');
+Route::post('/postlamaran', 'LampiranController@store');
+Route::get('/daftar', 'LampiranController@create');
 Route::get('/logout', 'loginController@logout');
 Route::post('cv/{id}', 'LamaranController@download');
 Route::get('/sekolah', 'SekolahController@index')->middleware('auth');

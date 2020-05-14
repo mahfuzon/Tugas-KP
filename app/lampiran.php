@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class lampiran extends Model
 {
     protected $table = 'lampiran';
-    protected $fillable = ['nama_peserta','email_peserta','mulai','selesai', 'asal_sekolah', 'cv', 'acc'];
+    protected $fillable = ['nama_peserta','email_peserta','mulai','selesai', 'asal_sekolah', 'acc'];
 
     protected $dates = ['mulai', 'selesai'];
 
@@ -19,4 +19,8 @@ class lampiran extends Model
         return $this->hasMany('App\sekolah', 'sekolah_id');
     }
     
+    public function cv()
+    {
+        return $this->hasOne('App\Cv');
+    }
 }

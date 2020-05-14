@@ -8,7 +8,7 @@ class sekolah extends Model
 {
     protected $table = 'sekolah';
     protected $primaryKey = 'user_id';
-    protected $fillable = ['nama_sekolah', 'nama_guru','alamat_sekolah', 'email_guru', 'no_telepon_sekolah', 'user_id'];
+    protected $fillable = ['nama_sekolah', 'guru_pembimbing','alamat', 'email_guru', 'hp_guru', 'user_id'];
 
     public function peserta(){
         return $this->hasMany('App\peserta', 'sekolah_id');
