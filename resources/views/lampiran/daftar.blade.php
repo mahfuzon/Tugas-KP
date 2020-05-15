@@ -22,13 +22,23 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-image: url('{{asset('bg.JPG')}}'); background-size:80%;">
     <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-5"><center><img src="{{asset('logo.png')}}" style="width: 70%; height: 700%;"></center>
+                        <div class="container">
+                            <h1>Syarat dan Ketentuan</h1>
+                            <ol>
+                                <li>Magang dilakukan minimal 2 bulan</li>
+                                <li>Diwajibkan membuat project akhir</li>
+                                <li>Diwajibkan membuat artikel setiap harinya</li>
+                                <li>Tidak mendapatkan insentif selama magang</li>
+                            </ol>
+                        </div>
+                    </div>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
@@ -40,32 +50,32 @@
                             @csrf
                                 <div class="form-group">
                                     <label for="nama_peserta">Nama</label>
-                                    <input type="text" class="form-control form-control-user" id="nama_peserta" name="nama_peserta" value="{{ old('nama_peserta') }}">
+                                    <input type="text" class="form-control " id="nama_peserta" name="nama_peserta" value="{{ old('nama_peserta') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_sekolah">Asal Sekolah</label>
-                                    <input type="text" class="form-control form-control-user" id="asal_sekolah"
+                                    <input type="text" class="form-control " id="asal_sekolah"
                                         name="asal_sekolah" value="{{ old('asal_sekolah') }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email_peserta">Email</label>
-                                    <input type="email" class="form-control form-control-user" id="email_peserta" name="email_peserta" value="{{ old('email_peserta') }}">
+                                    <input type="email" class="form-control " id="email_peserta" name="email_peserta" value="{{ old('email_peserta') }}">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="mulai">Tanggal Mulai</label>
-                                        <input type="date" class="form-control form-control-user" id="mulai"
+                                        <input type="date" class="form-control " id="mulai"
                                             name="mulai" value="{{ old('mulai') }}">
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="selesai">Tanggal Selesai</label>
-                                        <input type="date" class="form-control form-control-user" id="selesai"
+                                        <input type="date" class="form-control " id="selesai"
                                             name="selesai" value="{{ old('selesai') }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="cv">CV:</label>
-                                    <input type="file" class="form-control form-control-user" id="cv" name="cv" value="{{ old('cv') }}">
+                                    <input type="file" class="form-control" id="cv" name="cv" value="{{ old('cv') }}">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Daftar</button>
                             </form>

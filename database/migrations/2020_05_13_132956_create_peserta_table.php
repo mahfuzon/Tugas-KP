@@ -17,7 +17,6 @@ class CreatePesertaTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('lampiran_id')->unsigned();
-            $table->bigInteger('sekolah_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('lampiran_id')->references('id')->on('lampiran')->onDelete('cascade');
             $table->timestamps();

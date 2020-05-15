@@ -7,6 +7,7 @@ use App\User;
 use App\lampiran;
 use App\peserta;
 use App\Exports\pesertaExport;
+use App\Mail\NotifPendaftaranPeserta;
 use Excel;
 use Session;
 
@@ -79,6 +80,8 @@ class pesertaController extends Controller
         $peserta->lampiran_id = $lampiran->id;
         $peserta->save();
 
+        \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta);
+
         Session::flash('sukses_tambah', 'User berhasil dibuat');
         return redirect('/peserta');
     }
@@ -136,6 +139,9 @@ class pesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $peserta = peserta::findOrFail($id);
+        $peserta->delete();
+        Session::flash('sukses_hapus', 'Peserta Berhasil di Hapus');
+        return redirect('/peserta');
     }
 }

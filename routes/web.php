@@ -17,17 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lamaran', 'LampiranController@index')->middleware('auth');
 Route::post('/lamaran/delete/{id}', 'LampiranController@destroy');
 Route::get('/peserta', 'pesertaController@index');
 Route::get('/peserta/export', 'pesertaController@export');
 Route::get('/peserta/edit/{id}', 'pesertaController@edit');
+Route::post('/peserta/delete/{id}', 'pesertaController@destroy');
 Route::post('/postedit/{id}', 'pesertaController@update');
 Route::post('/postlamaran', 'LampiranController@store');
 Route::get('/daftar', 'LampiranController@create');
 Route::get('/logout', 'loginController@logout');
-Route::post('cv/{id}', 'LamaranController@download');
+Route::post('cv/{id}', 'LampiranController@download');
 Route::get('/sekolah', 'SekolahController@index')->middleware('auth');
 Route::get('/sekolah/create', 'SekolahController@create');
 Route::get('/sekolah/edit/{id}', 'SekolahController@edit');

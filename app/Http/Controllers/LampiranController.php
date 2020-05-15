@@ -106,7 +106,7 @@ class LampiranController extends Controller
                 $lampiran->email_peserta = $request->email_peserta;
                 $lampiran->mulai = $request->mulai;
                 $lampiran->selesai = $request->selesai;  
-                $lampiran->acc = 0;
+                $lampiran->acc = 'waiting';
                 $lampiran->save();
 
                 $cv = new Cv;
@@ -115,10 +115,12 @@ class LampiranController extends Controller
                 $cv->cv = $name;
                 $lampiran->cv()->save($cv);
                 if(Auth()->user()->level == 'guru'){
-                    Session::flash('sukses_tambah', 'Pendaftaran Berhasil'); 
-                }
-                Session::flash('berhasil_daftar', 'Pendaftaran Berhasil Komfirmasi Akan Dikirim Via Email');    
-                return redirect('/lamaran');
+                    Session::flash('sukses_tambah', 'Pendaftaran Berhasil');
+                    return redirect('/lamaran'); 
+                }else{
+                    Session::flash('berhasil_daftar', 'Pendaftaran Berhasil Komfirmasi Akan Dikirim Via Email'); 
+                    return redirect('/daftar');
+                }   
         }
         
     }
@@ -127,8 +129,7 @@ class LampiranController extends Controller
     {   
         $lampirans = lampiran::all();
         $lampiran = $lampirans->find($id);
-        $file = public_path(). '/cv_peserta/' . $lampiran->cv;
-        return response()->download($file, $lampiran->cv);
+        return Storage::download('cv/'.$lampiran->cv->cv);
     }
 
     /**
