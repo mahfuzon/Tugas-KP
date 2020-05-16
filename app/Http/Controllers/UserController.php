@@ -18,7 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-       
+        $halaman = 'user';
+        $user = User::all();
+        return view('user.user', compact('halaman', 'user'));
     }
 
     /**
@@ -108,6 +110,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id)->delete();
+        Session::flash('sukses_hapus', 'Data Berhasil di Hapus');
+        return redirect('/user');
     }
 }

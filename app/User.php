@@ -19,13 +19,6 @@ class User extends Authenticatable
         'email', 'password', 'level', 'peserta_id'
     ];
 
-    
-
-
-    public function peserta(){
-        return $this->hasOne('App\peserta', 'user_id');
-    }
-
     public function sekolah(){
         return $this->hasOne('App\sekolah', 'user_id');
     }

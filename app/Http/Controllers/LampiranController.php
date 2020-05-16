@@ -20,10 +20,10 @@ class LampiranController extends Controller
      */
     public function index()
     {
-        $halaman = "lamaran";
+        $halaman = "lampiran";
         if(Auth()->User()->level == 'guru'){
             $id = Auth()->User()->id;
-            $sekolah = sekolah::findOrFail($id);
+            $sekolah = sekolah::where('user_id',$id)->firstOrFail();
             $lampiran = lampiran::where('asal_sekolah', $sekolah->nama_sekolah)->get();
             return view('lampiran.lamaran', compact('halaman','lampiran'));
         }
@@ -96,7 +96,7 @@ class LampiranController extends Controller
             }else{
                 $lampiran = new lampiran;
                 $lampiran->nama_peserta = $request->nama_peserta;
-                if(Auth()->user()->level == 'guru'){
+                if(Auth::check() && Auth()->user()->level == 'guru'){
                     $user_login = Auth()->User()->email;
                     $sekolah = sekolah::where('email_guru', $user_login)->first();
                     $lampiran->asal_sekolah = $sekolah->nama_sekolah;
@@ -114,13 +114,15 @@ class LampiranController extends Controller
                 $path = $request->file('cv')->storeAs('cv',$name);
                 $cv->cv = $name;
                 $lampiran->cv()->save($cv);
-                if(Auth()->user()->level == 'guru'){
-                    Session::flash('sukses_tambah', 'Pendaftaran Berhasil');
-                    return redirect('/lamaran'); 
+                if(Auth::check()){
+                    if(Auth::user()->level == 'guru'){
+                        Session::flash('sukses_tambah', 'Pendaftaran Berhasil');
+                        return redirect('/lamaran'); 
+                    }
                 }else{
                     Session::flash('berhasil_daftar', 'Pendaftaran Berhasil Komfirmasi Akan Dikirim Via Email'); 
                     return redirect('/daftar');
-                }   
+                }
         }
         
     }
@@ -138,9 +140,13 @@ class LampiranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function tolak($id)
     {
-        //
+        $lampiran = lampiran::findOrFail($id);
+        $lampiran->acc = 'tolak';
+        $lampiran->save();
+        Session::flash('sukses_hapus', 'lamaran di tolak');
+        return redirect('/lamaran');
     }
 
     /**

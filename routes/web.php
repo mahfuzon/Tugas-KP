@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/daftar');
 });
 
 Auth::routes();
@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/lamaran', 'LampiranController@index')->middleware('auth');
 Route::post('/lamaran/delete/{id}', 'LampiranController@destroy');
+Route::post('/lamaran/tolak/{id}', 'LampiranController@tolak');
 Route::get('/peserta', 'pesertaController@index');
 Route::get('/peserta/export', 'pesertaController@export');
 Route::get('/peserta/edit/{id}', 'pesertaController@edit');
@@ -40,6 +41,8 @@ Route::post('/postAccount/{id}', 'pesertaController@post');
 
 Route::get('/change-password/{id}', 'UserController@edit');
 Route::post('/change-password/{id}', 'UserController@update');
+Route::get('/user', 'UserController@index');
+Route::post('/user/delete/{id}', 'UserController@destroy');
 
 
 

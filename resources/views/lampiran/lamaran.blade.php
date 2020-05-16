@@ -27,6 +27,7 @@
                             <th>Tanggal Mulai</th>
                             <th>Tanggal Selesai</th>
                             <th>CV</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -46,23 +47,25 @@
                                     @csrf
                                 </form>
                             </td>
+                            <td>{{$lam->acc}}</td>
                             <td>
-                                @if($lam->acc == 0)
+                                @if($lam->acc == 'waiting')
                                     @if(Auth::check() && Auth()->User()->level == 'admin')
                                         <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
                                                                 document.getElementById('accept_{{$lam->id}}').submit();" title="accept"
-                                            style='float:left; margin-left:10px;'>
+                                            style='float:left; margin-left:0px;'>
                                             <i class="fas fa-user-check" style="color:green;"></i>
                                         </a>
                                         <form action="/postAccount/{{$lam->id}}" method="POST" id="accept_{{$lam->id}}">
                                             @csrf
                                         </form>
 
-                                        <a href="#" lamaran_id="{{$lam->id}}" title="delete" style='float:left; margin-left:10px;'
-                                            class="delete">
-                                            <i class="fas fa-trash-alt" style="color:red;"></i>
+                                        <a href="/lamaran/tolak/{{$lam->id}}" lamaran_id="{{$lam->id}}" title="reject" style='float:left; margin-left:5px;'
+                                            class="" onclick="event.preventDefault();
+                                                     document.getElementById('tolak_{{$lam->id}}').submit();">
+                                            <i class="fas fa-times-circle" style="color:red;"></i>
                                         </a>
-                                        <form action="/lamaran/delete/{{$lam->id}}" method="post" id="delete_{{$lam->id}}">
+                                        <form action="/lamaran/tolak/{{$lam->id}}" method="post" id="tolak_{{$lam->id}}">
                                             @csrf
                                         </form>
                                     @else
@@ -74,7 +77,12 @@
                                     </form>
                                     @endif
                                 @else
-                                    <p>acc</p>
+                                    <a href="#"  lamaran_id="{{$lam->id}}" title="delete" style='float:left; margin-left:15px;' class="delete">
+                                        <i class="fas fa-trash-alt" style="color:grey;"></i>
+                                    </a>
+                                    <form action="/lamaran/delete/{{$lam->id}}" method="POST" id="delete_{{$lam->id}}">
+                                        @csrf
+                                    </form>
                                 @endif
                             </td>
                         </tr>

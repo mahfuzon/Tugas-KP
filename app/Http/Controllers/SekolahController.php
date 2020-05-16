@@ -56,6 +56,7 @@ class SekolahController extends Controller
         }
 
         $user = new User;
+        $user->nama = $request->guru_pembimbing;
         $user->email = $request->email_guru;
         $user->password = bcrypt('guru');
         $user->level = 'guru';

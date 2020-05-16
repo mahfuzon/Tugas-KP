@@ -9,6 +9,7 @@ use App\peserta;
 use App\Exports\pesertaExport;
 use App\Mail\NotifPendaftaranPeserta;
 use Excel;
+use App\sekolah;
 use Session;
 
 class pesertaController extends Controller
@@ -66,23 +67,16 @@ class pesertaController extends Controller
     public function post($id)
     {
         $lampiran = lampiran::findOrFail($id);
-        $lampiran->acc = 1;
+        $lampiran->acc = 'terima';
         $lampiran->save();
 
-        $user = new User;
-        $user->email = $lampiran->email_peserta;
-        $user->password = bcrypt('12345');
-        $user->level = 'peserta';
-        $user->save();
-
         $peserta = new peserta;
-        $peserta->user_id = $user->id;
         $peserta->lampiran_id = $lampiran->id;
         $peserta->save();
 
         \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta);
 
-        Session::flash('sukses_tambah', 'User berhasil dibuat');
+        Session::flash($lampiran->email_peserta, 'User berhasil dibuat');
         return redirect('/peserta');
     }
 
@@ -123,12 +117,14 @@ class pesertaController extends Controller
     
         $peserta = peserta::findOrFail($id);
         $lampiran = lampiran::where('id', $peserta->lampiran_id)->firstOrFail();
-        $user = user::where('id', $peserta->user_id)->firstOrFail();
-        $user->email = $request->email_peserta;
-        $user->save();
-        
-        $lampiran->update($request->all());
-        return 'ok';
+        $lampiran->nama_peserta = $request->nama_peserta;
+        $lampiran->email_peserta = $request->email_peserta;
+        $lampiran->mulai = $request->mulai;
+        $lampiran->selesai = $request->selesai;
+        $lampiran->save();
+
+        Session::flash('sukses_edit', 'Data berhasil di update');
+        return redirect('/peserta');
     }
 
     /**

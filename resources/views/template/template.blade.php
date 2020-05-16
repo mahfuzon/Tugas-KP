@@ -37,11 +37,21 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/home">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+            @if(Auth::check())
+                @if(isset($halaman) && $halaman == 'home')
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/home">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                @endif
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -108,6 +118,26 @@
                 @endif
             @endif
 
+            @if(Auth::check())
+                @if(Auth()->User()->level == 'admin')
+                    @if(isset($halaman) && $halaman == 'user')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/user">
+                                <i class="fas fa-user"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user">
+                                <i class="fas fa-user"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+                    @endif
+                @endif
+            @endif
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -156,9 +186,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                <img class="img-profile rounded-circle"
-                                    src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                @if(Auth::check() && Auth::User()->level == 'admin')
+                                    {{Auth::User()->level}}
+                                @else
+                                    {{Auth::User()->nama}}
+                                @endif
+                                </span>
+                                <i class="fas fa-user fa-2x"></i>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
