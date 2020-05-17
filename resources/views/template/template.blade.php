@@ -198,7 +198,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/change-password/">
+                                <a class="dropdown-item" href="/change-password/@if(Auth::check()){{Auth::user()->id}}@endif">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Change Password
                                 </a>
