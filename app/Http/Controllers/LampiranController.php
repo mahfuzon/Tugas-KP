@@ -59,7 +59,7 @@ class LampiranController extends Controller
         if(Auth::check() && Auth::user()->level == 'guru'){
             $validator = Validator::make($input, [
                 'nama_peserta' => 'required|string|max:30',
-                'email_peserta' => 'required|email',
+                'email_peserta' => 'required|email|unique:lampiran',
                 'mulai' => 'required|date',
                 'selesai' => 'required|date',
                 'cv' => 'required',
@@ -68,7 +68,7 @@ class LampiranController extends Controller
             $validator = Validator::make($input, [
                 'nama_peserta' => 'required|string|max:30',
                 'asal_sekolah' => 'required|string',
-                'email_peserta' => 'required|email',
+                'email_peserta' => 'required|email|unique:lampiran',
                 'mulai' => 'required|date',
                 'selesai' => 'required|date',
                 'cv' => 'required',
