@@ -26,9 +26,10 @@ class LampiranController extends Controller
             $sekolah = sekolah::where('user_id',$id)->firstOrFail();
             $lampiran = lampiran::where('asal_sekolah', $sekolah->nama_sekolah)->get();
             return view('lampiran.lamaran', compact('halaman','lampiran'));
+        }else{
+            $lampiran = lampiran::all();
+            return view('lampiran.lamaran', compact('halaman', 'lampiran'));
         }
-        $lampiran = lampiran::all();
-        return view('lampiran.lamaran', compact('halaman', 'lampiran'));
     }
 
     /**
@@ -38,8 +39,9 @@ class LampiranController extends Controller
      */
     public function create()
     {
+        $halaman = 'lampiran';
         if(Auth::check() && Auth()->user()->level == 'guru'){
-            return view('lampiran.tambah');
+            return view('lampiran.tambah', compact('halaman'));
         }
 
         return view('lampiran.daftar');

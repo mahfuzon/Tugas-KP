@@ -39,8 +39,8 @@
             <!-- Nav Item - Dashboard -->
             @if(Auth::check())
                 @if(isset($halaman) && $halaman == 'home')
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/home">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
                             <span>Dashboard</span></a>
                     </li>
@@ -80,7 +80,7 @@
             <!-- Nav Item - Utilities Collapse Menu -->
             @if(Auth::check())
                 @if(Auth()->User()->level == 'guru' || Auth()->User()->level == 'admin')
-                    @if(isset($halaman) && $halaman == 'lamaran')
+                    @if(isset($halaman) && $halaman == 'lampiran')
                         <li class="nav-item active">
                             <a class="nav-link" href="/lamaran">
                                 <i class="fas fa-envelope"></i>
