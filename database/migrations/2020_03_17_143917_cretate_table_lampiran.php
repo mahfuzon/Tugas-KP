@@ -17,6 +17,7 @@ class CretateTableLampiran extends Migration
             $table->bigIncrements('id');
             $table->string('nama_peserta'); 
             $table->string('asal_sekolah')->nullable();
+            $table->bigInteger('sekolah_id')->nullable();
             $table->string('email_peserta')->unique();
             $table->date('mulai');
             $table->date('selesai');
