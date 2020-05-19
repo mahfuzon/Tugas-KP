@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class lampiran extends Model
 {
     protected $table = 'lampiran';
-    protected $fillable = ['nama_peserta','email_peserta','mulai','selesai', 'asal_sekolah', 'acc'];
+    protected $fillable = ['nama_peserta','email_peserta','mulai','selesai', 'asal_sekolah', 'acc', 'sekolah_id'];
 
     protected $dates = ['mulai', 'selesai'];
 
