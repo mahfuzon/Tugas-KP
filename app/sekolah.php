@@ -12,4 +12,8 @@ class sekolah extends Model
     public function user(){
         return $this->belongsTo('App\sekolah', 'user_id');
     }
+
+    public function peserta(){
+        return $this->hasOne('App\peserta','sekolah_id');
+    }
 }
