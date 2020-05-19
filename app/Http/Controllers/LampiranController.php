@@ -10,6 +10,7 @@ use Storage;
 use Auth;
 use App\Cv;
 use App\sekolah;
+use App\Mail\NotifPenolakan;
 
 class LampiranController extends Controller
 {
@@ -147,6 +148,9 @@ class LampiranController extends Controller
         $lampiran = lampiran::findOrFail($id);
         $lampiran->acc = 'tolak';
         $lampiran->save();
+
+        \Mail::to('mahfuzon0@gmail.com')->send(new NotifPenolakan);
+
         Session::flash('sukses_hapus', 'lamaran di tolak');
         return redirect('/lamaran');
     }

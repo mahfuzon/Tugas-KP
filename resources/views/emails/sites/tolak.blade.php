@@ -1,11 +1,9 @@
 @component('mail::message')
-# Introduction
+# Mohon maaf, lamaran anada ditolak karena tidak memenuhi standar
 
 The body of your message.
 
-@component('mail::button', ['url' => ''])
-Button Text
-@endcomponent
+
 
 Thanks,<br>
 {{ config('app.name') }}
