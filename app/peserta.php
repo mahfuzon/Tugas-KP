@@ -12,4 +12,8 @@ class peserta extends Model
     public function lampiran(){
         return $this->belongsTo('App\lampiran','lampiran_id');
     }
+
+    public function sekolah(){
+        return $this->belongsTo('App\sekolah','sekolah_id');
+    }
 }
