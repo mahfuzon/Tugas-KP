@@ -100,9 +100,10 @@ class LampiranController extends Controller
                 $lampiran = new lampiran;
                 $lampiran->nama_peserta = $request->nama_peserta;
                 if(Auth::check() && Auth()->user()->level == 'guru'){
-                    $user_login = Auth()->User()->email;
-                    $sekolah = sekolah::where('email_guru', $user_login)->first();
+                    $user_login = Auth()->User()->id;
+                    $sekolah = sekolah::where('user_id', $user_login)->first();
                     $lampiran->asal_sekolah = $sekolah->nama_sekolah;
+                    $lampiran->sekolah_id = $sekolah->id;
                 }else{
                     $lampiran->asal_sekolah = $request->asal_sekolah;
                 }
