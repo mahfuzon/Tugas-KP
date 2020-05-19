@@ -16,7 +16,7 @@ class lampiran extends Model
     }
 
     public function sekolah(){
-        return $this->hasMany('App\sekolah', 'sekolah_id');
+        return $this->belongsTo('App\sekolah', 'sekolah_id');
     }
     
     public function cv()
