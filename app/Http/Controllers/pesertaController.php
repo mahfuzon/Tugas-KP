@@ -11,6 +11,7 @@ use App\Mail\NotifPendaftaranPeserta;
 use Excel;
 use App\sekolah;
 use Session;
+use Auth;
 
 class pesertaController extends Controller
 {
@@ -21,33 +22,15 @@ class pesertaController extends Controller
      */
     public function index()
     {
-        $peserta = peserta::all();
-        $lampiran = lampiran::all();
-        $user = User::all();
         $halaman = 'peserta';
-        $now = date('Y-m-d');
-
-        $lampiran_keluar = $lampiran->where('selesai','<=' , $now);
-        foreach ($lampiran_keluar as $l) {
-            $peserta_keluar = $peserta->where('lampiran_id', $l->id);
-            foreach($peserta_keluar as $p){
-                $p->delete();
-            }
-
-            $user_off = $user->where('peserta_id', $l->id);
-            foreach($user_off as $u){
-                $u->delete();
-            }
-
-            if(Auth::check() && Auth::User()->level() == 'guru'){
-                $user_login = Auth()->User()->id;
-                $sekolah = sekolah::where('user_id', $user_login)->firstOrFail();
-                $peserta_sekolah = $peserta->where('sekolah_id', $sekolah->id);
-                return view('peserta.peserta', compact('peserta_sekolah', 'halaman'));
-            }
-            
+        $login = Auth()->User()->id;
+        if(Auth::User()->level == 'guru'){
+            $sekolah = sekolah::where('user_id', $login)->firstOrFail();
+            $peserta = peserta::where('sekolah_id', $sekolah->id)->get();
+        }else{
+            $peserta = peserta::all();
         }
-        return view('peserta.peserta', compact('peserta', 'halaman'));
+        return view('peserta.peserta', compact('halaman', 'peserta'));
     }
 
     /**
@@ -79,6 +62,10 @@ class pesertaController extends Controller
 
         $peserta = new peserta;
         $peserta->lampiran_id = $lampiran->id;
+        if(Auth::check() && Auth::user()->level == 'guru'){
+            $sekolah = sekolah::where('user_id', Auth()->user()->id)->firstOrFail();
+            $peserta->sekolah_id = $sekolah->id;
+        }
         $peserta->save();
 
         \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta);
