@@ -38,6 +38,13 @@ class pesertaController extends Controller
             foreach($user_off as $u){
                 $u->delete();
             }
+
+            if(Auth::check() && Auth::User()->level() == 'guru'){
+                $user_login = Auth()->User()->id;
+                $sekolah = sekolah::where('user_id', $user_login)->firstOrFail();
+                $peserta_sekolah = $peserta->where('sekolah_id', $sekolah->id);
+                return view('peserta.peserta', compact('peserta_sekolah', 'halaman'));
+            }
             
         }
         return view('peserta.peserta', compact('peserta', 'halaman'));
@@ -76,7 +83,7 @@ class pesertaController extends Controller
 
         \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta);
 
-        Session::flash($lampiran->email_peserta, 'User berhasil dibuat');
+        Session::flash('sukses_tambah', 'User berhasil dibuat');
         return redirect('/peserta');
     }
 
