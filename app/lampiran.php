@@ -21,6 +21,6 @@ class lampiran extends Model
     
     public function cv()
     {
-        return $this->hasOne('App\Cv');
+        return $this->hasOne('App\Cvs');
     }
 }
