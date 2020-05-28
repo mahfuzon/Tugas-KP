@@ -52,7 +52,7 @@ class SearchController extends Controller
 
         $data = Item::select("name")
 
-                ->where("name","LIKE","%{$request->query}%")
+                ->where("name","LIKE","%{$request->input('query')}%")
 
                 ->get();
 
