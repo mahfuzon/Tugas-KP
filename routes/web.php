@@ -47,4 +47,5 @@ Route::post('/user/delete/{id}', 'UserController@destroy');
 Route::get('/1','EmployeesController@index');
 Route::post('/employees/getEmployees/','EmployeesController@getEmployees')->name('employees.getEmployees');
 
-
+Route::get('search', 'SearchController@index')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
