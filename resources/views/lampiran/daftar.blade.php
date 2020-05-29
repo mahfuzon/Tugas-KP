@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Pendaftaran Program Magang PT.Garuda Cyber Indonesia</title>
 
@@ -19,7 +20,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('sb/css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 </head>
 
 <body style="background-image: url('{{asset('bg.JPG')}}'); background-size:80%;">
@@ -55,7 +57,7 @@
                                 <div class="form-group">
                                     <label for="asal_sekolah">Asal Sekolah</label>
                                     <input type="text" class="form-control " id="asal_sekolah"
-                                        name="asal_sekolah" value="{{ old('asal_sekolah') }}">
+                                        name="asal_sekolah" value="{{ old('asal_sekolah') }}" autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label for="email_peserta">Email</label>
@@ -63,12 +65,12 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <label for="mulai">Tanggal Mulai</label>
+                                        <label for="mulai">Rencana Mulai</label>
                                         <input type="date" class="form-control " id="mulai"
                                             name="mulai" value="{{ old('mulai') }}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="selesai">Tanggal Selesai</label>
+                                        <label for="selesai">Rencana Selesai</label>
                                         <input type="date" class="form-control " id="selesai"
                                             name="selesai" value="{{ old('selesai') }}">
                                     </div>
@@ -93,9 +95,41 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('sb/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
+    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('sb/js/sb-admin-2.min.js')}}"></script>
-
+    <script type="text/javascript">
+        // CSRF Token
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $(document).ready(function(){
+            $( "#asal_sekolah" ).autocomplete({
+            source: function( request, response ) {
+                // Fetch data
+                    $.ajax({
+                    url:"{{route('employees.getEmployees')}}",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        _token: CSRF_TOKEN,
+                        search: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+            select: function (event, ui) {
+                // Set selection
+                $('#employee_search').val(ui.item.label); // display the selected text
+                return false;
+                        }
+                    });
+                });
+    </script>
 </body>
-
 </html>

@@ -193,4 +193,21 @@ class LampiranController extends Controller
         Session::flash('sukses_hapus', 'data berhasil di hapus');
         return redirect('/lamaran');
     }
+
+    public function getEmployees(Request $request){
+
+        
+        $search = $request->search;
+        if($search == ''){
+            $employees = sekolah::orderby('nama_sekolah','asc')->select('id','nama_sekolah')->limit(5)->get();
+        }else{
+            $employees = sekolah::orderby('nama_sekolah','asc')->select('id','nama_sekolah')->where('nama_sekolah', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+        $response = array();
+        foreach($employees as $employee){
+            $response[] = array("value"=>$employee->id,"label"=>$employee->nama_sekolah);
+        }
+        echo json_encode($response);
+        exit;
+    }
 }

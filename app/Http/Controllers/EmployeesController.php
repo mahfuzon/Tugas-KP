@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employees;
+use App\sekolah;
 
 class EmployeesController extends Controller
 {
@@ -19,14 +19,14 @@ class EmployeesController extends Controller
       $search = $request->search;
 
       if($search == ''){
-         $employees = Employees::orderby('name','asc')->select('id','name')->limit(5)->get();
+         $employees = sekolah::orderby('nama_sekolah','asc')->select('nama_sekolah')->limit(5)->get();
       }else{
-         $employees = Employees::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+         $employees = sekolah::orderby('nama_sekolah','asc')->select('nama_sekolah')->where('nama_sekolah', 'like', '%' .$search . '%')->limit(5)->get();
       }
 
       $response = array();
       foreach($employees as $employee){
-         $response[] = array("value"=>$employee->id,"label"=>$employee->name);
+         $response[] = $employee->nama_sekolah;
       }
 
       echo json_encode($response);

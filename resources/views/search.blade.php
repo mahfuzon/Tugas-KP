@@ -16,17 +16,16 @@
 
 <body>
 
-   
 
 <div class="container">
 
     <h1>Laravel 6 Autocomplete Search using Bootstrap Typeahead JS - ItSolutionStuff.com</h1>   
 
-    <input class="typeahead form-control" type="text">
+    <input class="typeahead form-control" type="text" autocomplete="off">
+    <h5>Assalamu'alaikum</h5>
 
 </div>
 
-   
 
 <script type="text/javascript">
 
@@ -47,9 +46,5 @@
     });
 
 </script>
-
-   
-
 </body>
-
 </html>

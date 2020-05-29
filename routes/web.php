@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Mail\Coba;
 
 Route::get('/', function () {
     return redirect('/daftar');
@@ -49,3 +50,7 @@ Route::post('/employees/getEmployees/','EmployeesController@getEmployees')->name
 
 Route::get('search', 'SearchController@index')->name('search');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
+
+Route::get('coba', function(){
+    Mail::to('mahfuzon0@gmail.com')->send(new Coba);
+});
