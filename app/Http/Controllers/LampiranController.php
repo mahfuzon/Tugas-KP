@@ -22,7 +22,7 @@ class LampiranController extends Controller
     public function index()
     {
         $halaman = "lampiran";
-        if(Auth()->User()->level == 'guru'){
+        if(Auth::check() && Auth()->User()->level == 'guru'){
             $id = Auth()->User()->id;
             $sekolah = sekolah::where('user_id',$id)->firstOrFail();
             $lampiran = lampiran::where('asal_sekolah', $sekolah->nama_sekolah)->get();

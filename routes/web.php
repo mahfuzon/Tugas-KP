@@ -20,7 +20,7 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/lamaran', 'LampiranController@index')->middleware('auth', 'guest');
+Route::get('/lamaran', 'LampiranController@index')->middleware('auth');
 Route::post('/lamaran/delete/{id}', 'LampiranController@destroy');
 Route::post('/lamaran/tolak/{id}', 'LampiranController@tolak');
 Route::get('/peserta', 'pesertaController@index');
