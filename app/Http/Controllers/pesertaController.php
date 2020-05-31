@@ -7,7 +7,7 @@ use App\User;
 use App\lampiran;
 use App\peserta;
 use App\Exports\pesertaExport;
-use App\Mail\NotifPendaftaranPeserta;
+use App\Mail\NotifikasiPendaftaranPeserta;
 use Excel;
 use App\sekolah;
 use Session;
@@ -68,7 +68,7 @@ class pesertaController extends Controller
         }
         $peserta->save();
         $terima = 1;
-        \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta($terima));
+        \Mail::to($peserta->lampiran->email_peserta)->send(new NotifikasiPendaftaranPeserta($terima));
 
         Session::flash('sukses_tambah', 'User berhasil dibuat');
         return redirect('/peserta');
