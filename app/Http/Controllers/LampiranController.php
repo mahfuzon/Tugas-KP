@@ -10,7 +10,7 @@ use Storage;
 use Auth;
 use App\Cv;
 use App\sekolah;
-use App\Mail\NotifPendaftaranPeserta;
+use App\Mail\NotifikasiPendaftaranPeserta;
 
 class LampiranController extends Controller
 {
@@ -150,7 +150,7 @@ class LampiranController extends Controller
         $lampiran->acc = 'tolak';
         $lampiran->save();
         $terima = 0;
-        \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta($terima));
+        \Mail::to($lampiran->email_peserta)->send(new NotifikasiPendaftaranPeserta($terima));
 
         Session::flash('sukses_hapus', 'lamaran di tolak');
         return redirect('/lamaran');
