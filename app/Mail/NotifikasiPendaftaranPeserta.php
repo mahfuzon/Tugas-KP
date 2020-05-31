@@ -16,9 +16,12 @@ class NotifikasiPendaftaranPeserta extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $terima;
+
+    public function __construct($terima)
     {
-        //
+        $this->terima = $terima;
     }
 
     /**
