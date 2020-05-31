@@ -67,8 +67,8 @@ class pesertaController extends Controller
             $peserta->sekolah_id = $sekolah->id;
         }
         $peserta->save();
-
-        \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta);
+        $terima = 1;
+        \Mail::to('mahfuzon0@gmail.com')->send(new NotifPendaftaranPeserta($terima));
 
         Session::flash('sukses_tambah', 'User berhasil dibuat');
         return redirect('/peserta');

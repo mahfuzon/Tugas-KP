@@ -15,8 +15,7 @@
     <style>
         /* What it does: Remove spaces around the email design added by some email clients. */
         /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
-        html,
-        body {
+        html, body {
             margin: 0 auto !important;
             padding: 0 !important;
             height: 100% !important;
@@ -63,8 +62,7 @@
         /* What it does: A work-around for email clients meddling in triggered links. */
         *[x-apple-data-detectors],
         /* iOS */
-        .unstyle-auto-detected-links *,
-        .aBn {
+        .unstyle-auto-detected-links *, .aBn {
             border-bottom: 0 !important;
             cursor: default !important;
             color: inherit !important;
@@ -183,12 +181,7 @@
             text-decoration: underline;
         }
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Work Sans', sans-serif;
             color: #000000;
             margin-top: 0;
@@ -336,7 +329,7 @@
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
                                 <td class="logo" style="text-align: left;">
-                                    <h1><a href="#">Shop</a></h1>
+                                    <center><img src="https://startuppekanbaru.org/wp-content/uploads/2017/07/logo-garuda-copy.png" style="width:40%; height: 10%;"></center>
                                 </td>
                             </tr>
                         </table>
@@ -348,62 +341,13 @@
                             <tr>
                                 <td style="padding: 0 2.5em; text-align: left;">
                                     <div class="text">
-                                        <h2>Ronald your shopping cart misses you</h2>
-                                        <h3>Amazing deals, updates, interesting news right in your inbox</h3>
+                                        <h2>Selamat !!!</h2>
+                                        <h3>Anda Diterima Sebagai Peserta Magang di PT.Garuda Cyber indonesia</h3>
                                     </div>
                                 </td>
                             </tr>
                         </table>
                     </td>
-                </tr><!-- end tr -->
-                <tr>
-                    <table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-                            <th width="80%"
-                                style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-                            <th width="20%"
-                                style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-                            <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
-                                <div class="product-entry">
-                                    <img src="images/prod-1.jpg" alt=""
-                                        style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-                                    <div class="text">
-                                        <h3>Analog Wrest Watch</h3>
-                                        <span>Small</span>
-                                        <p>A small river named Duden flows by their place and supplies it with the
-                                            necessary regelialia.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td valign="middle" width="20%" style="text-align:left; padding: 0 2.5em;">
-                                <span class="price" style="color: #000; font-size: 20px;">$120</span>
-                            </td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-                            <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
-                                <div class="product-entry">
-                                    <img src="images/prod-2.jpg" alt=""
-                                        style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-                                    <div class="text">
-                                        <h3>Analog Wrest Watch</h3>
-                                        <span>Small</span>
-                                        <p>A small river named Duden flows by their place and supplies it with the
-                                            necessary regelialia.</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td valign="middle" width="20%" style="text-align:left; padding: 0 2.5em;">
-                                <span class="price" style="color: #000; font-size: 20px;">$120</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="middle" style="text-align:left; padding: 1em 2.5em;">
-                                <p><a href="#" class="btn btn-primary">Continur your order</a></p>
-                            </td>
-                        </tr>
-                    </table>
                 </tr><!-- end tr -->
                 <!-- 1 Column Text + Button : END -->
             </table>
@@ -457,12 +401,6 @@
                         </table>
                     </td>
                 </tr><!-- end: tr -->
-                <tr>
-                    <td class="bg_white" style="text-align: center;">
-                        <p>No longer want to receive these email? You can <a href="#"
-                                style="color: rgba(0,0,0,.8);">Unsubscribe here</a></p>
-                    </td>
-                </tr>
             </table>
         </div>
     </center>

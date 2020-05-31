@@ -16,9 +16,10 @@ class NotifPendaftaranPeserta extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $terima;
+    public function __construct($terima)
     {
-        //
+        $this->terima = $terima;
     }
 
     /**
@@ -28,6 +29,6 @@ class NotifPendaftaranPeserta extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.site.pendaftaran');
+        return $this->markdown('emails.site.pendaftaran')->with(['terima' => $this->terima]);
     }
 }
