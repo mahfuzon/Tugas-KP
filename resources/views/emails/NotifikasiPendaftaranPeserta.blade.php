@@ -341,8 +341,12 @@
                             <tr>
                                 <td style="padding: 0 2.5em; text-align: left;">
                                     <div class="text">
-                                        <h2>Selamat !!!</h2>
-                                        <h3>Anda Diterima Sebagai Peserta Magang di PT.Garuda Cyber indonesia</h3>
+                                        @if(isset($terima) && $terima == 1)
+                                            <h2>Anda Gagal</h2>
+                                        @else
+                                            <h2>Selamat</h2>
+                                            <h3>Anda Diterima Sebagai Peserta Magang di PT.Garuda Cyber indonesia</h3>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
