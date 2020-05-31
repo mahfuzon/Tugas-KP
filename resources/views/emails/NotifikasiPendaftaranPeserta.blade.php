@@ -342,10 +342,12 @@
                                 <td style="padding: 0 2.5em; text-align: left;">
                                     <div class="text">
                                         @if(isset($terima) && $terima == 1)
-                                            <h2>Anda Gagal</h2>
-                                        @else
                                             <h2>Selamat</h2>
-                                            <h3>Anda Diterima Sebagai Peserta Magang di PT.Garuda Cyber indonesia</h3>
+                                            <h3>Anda Diterima Sebagai Peserta Magang di PT.Garuda Cyber indonesia.</h3>
+                                            <h3>Silahkan datang pada hari pertama magang</h3>
+                                        @else
+                                            <h2>Mohon Maaf</h2>
+                                            <h3>Lamaran yang anda kirimkan ditolak karena tidak memenuhi syarat</h3>
                                         @endif
                                     </div>
                                 </td>
