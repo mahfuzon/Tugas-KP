@@ -28,6 +28,6 @@ class NotifikasiPendaftaranPeserta extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.NotifPendaftaranPeserta');
+        return $this->view('emails.NotifikasiPendaftaranPeserta');
     }
 }
