@@ -23,8 +23,8 @@ class pesertaController extends Controller
     public function index()
     {
         $halaman = 'peserta';
-        $login = Auth()->User()->id;
-        if(Auth::User()->level == 'guru'){
+        if(Auth::check() && Auth::User()->level == 'guru'){
+            $login = Auth()->User()->id;
             $sekolah = sekolah::where('user_id', $login)->firstOrFail();
             $peserta = peserta::where('sekolah_id', $sekolah->id)->get();
         }else{
