@@ -187,10 +187,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                @if(Auth::check() && Auth::User()->level == 'admin')
-                                    {{Auth::User()->level}}
-                                @else
-                                    {{Auth::User()->nama}}
+                                @if(Auth::check())
+                                    @if(Auth::User()->level == 'admin')
+                                        {{Auth::User()->level}}
+                                    @else
+                                        {{Auth::User()->nama}}
+                                    @endif
                                 @endif
                                 </span>
                                 <i class="fas fa-user fa-2x"></i>
