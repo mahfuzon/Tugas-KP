@@ -360,45 +360,26 @@
             <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
                 style="margin: auto;">
                 <tr>
-                    <td valign="middle" class="bg_light footer email-section">
+                    <td valign="middle" class="bg_dark footer email-section">
                         <table>
                             <tr>
-                                <td valign="top" width="33.333%" style="padding-top: 20px;">
+                                <td valign="top" width="50%" style="padding-top: 20px;">
                                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                                         <tr>
-                                            <td style="text-align: left; padding-right: 10px;">
-                                                <h3 class="heading">About</h3>
-                                                <p>A small river named Duden flows by their place and supplies it with
-                                                    the necessary regelialia.</p>
+                                            <td style="text-align: left; padding-right: 10px; color:white;">
+                                                <h3 class="heading" style="color:white;">About</h3>
+                                                <p>Garuda Cyber adalah sebuah perusahaan teknologi informasi yang berlokasi di Jakarta & Pekanbaru Riau</p>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
-                                <td valign="top" width="33.333%" style="padding-top: 20px;">
+                                <td valign="top" width="50%" style="padding-top: 20px;">
                                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                                         <tr>
-                                            <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
-                                                <h3 class="heading">Contact Info</h3>
-                                                <ul>
-                                                    <li><span class="text">203 Fake St. Mountain View, San Francisco,
-                                                            California, USA</span></li>
-                                                    <li><span class="text">+2 392 3929 210</span></a></li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td valign="top" width="33.333%" style="padding-top: 20px;">
-                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                        <tr>
-                                            <td style="text-align: left; padding-left: 10px;">
-                                                <h3 class="heading">Useful Links</h3>
-                                                <ul>
-                                                    <li><a href="#">Home</a></li>
-                                                    <li><a href="#">Account</a></li>
-                                                    <li><a href="#">Wishlist</a></li>
-                                                    <li><a href="#">Order</a></li>
-                                                </ul>
+                                            <td style="text-align: left; padding-left: 15px; padding-right: 5px; color:white;">
+                                                <h3 class="heading" style="color:white;">Contact Info</h3>
+                                                <p class="text">Jakarta : Jalan Haji Sholeh 2 Dalam No 17 Sukabumi Selatan, Jakarta Barat</p>
+                                                <p class="text">Pekanbaru : Jl. Subrantas No. 188 Panam-Pekanbaru-Riau</p>
                                             </td>
                                         </tr>
                                     </table>
