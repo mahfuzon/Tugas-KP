@@ -21,6 +21,19 @@
                                     @csrf
                                 </form>
         <!-- End -->
+
+        <!-- Pencarian -->
+        <form action="/peserta/cari" method="post">
+            <div class="form-row">
+                <div class="col-3">
+                    <input type="text" name="cari" id="cari" placeholder="Search" class="form-control" style="margin-left:0px;">
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-secondary">GO</button>
+                </div>
+            </div>
+        </form>
+        <!-- Akhir Pencarian -->
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
