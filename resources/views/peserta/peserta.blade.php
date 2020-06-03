@@ -24,6 +24,7 @@
 
         <!-- Pencarian -->
         <form action="/peserta/cari" method="post">
+        @csrf
             <div class="form-row">
                 <div class="col-3">
                     <input type="text" name="cari" id="cari" placeholder="Search" class="form-control" style="margin-left:0px;">
