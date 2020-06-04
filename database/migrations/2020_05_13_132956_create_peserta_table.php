@@ -15,6 +15,11 @@ class CreatePesertaTable extends Migration
     {
         Schema::create('peserta', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama_peserta');
+            $table->string('asal_sekolah')->nullable();
+            $table->string('email_peserta')->unique();
+            $table->date('mulai');
+            $table->date('selesai');
             $table->bigInteger('lampiran_id')->unsigned();
             $table->foreign('lampiran_id')->references('id')->on('lampiran')->onDelete('cascade');
             $table->bigInteger('sekolah_id')->unsigned()->nullable();
