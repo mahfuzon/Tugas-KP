@@ -66,6 +66,11 @@ class pesertaController extends Controller
             $sekolah = sekolah::where('user_id', Auth()->user()->id)->firstOrFail();
             $peserta->sekolah_id = $sekolah->id;
         }
+        $peserta->nama_peserta = $lampiran->nama_peserta;
+        $peserta->asal_sekolah = $lampiran->asal_sekolah;
+        $peserta->email_peserta = $lampiran->email_peserta;
+        $peserta->mulai = $lampiran->mulai;
+        $peserta->selesai = $lampiran->selesai;
         $peserta->save();
         $terima = 1;
         \Mail::to($peserta->lampiran->email_peserta)->send(new NotifikasiPendaftaranPeserta($terima));
