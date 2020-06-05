@@ -23,7 +23,7 @@
         <!-- End -->
 
         <!-- Pencarian -->
-        <form action="/peserta/cari" method="post">
+        <form action="/peserta" method="get">
         @csrf
             <div class="form-row">
                 <div class="col-3">

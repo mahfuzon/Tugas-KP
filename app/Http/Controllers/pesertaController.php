@@ -139,4 +139,13 @@ class pesertaController extends Controller
         Session::flash('sukses_hapus', 'Peserta Berhasil di Hapus');
         return redirect('/peserta');
     }
+
+    public function cari(Request $request){
+        $cari = $request->input('cari');
+        $halaman  = 'peserta';
+        $peserta = peserta::where("nama_peserta", "LIKE", "%.$cari.%")->
+                           paginate(5);
+        return $peserta;
+        return view('peserta.peserta', compact('halaman', 'peserta'));
+    }
 }
