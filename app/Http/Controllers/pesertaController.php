@@ -141,11 +141,14 @@ class pesertaController extends Controller
     }
 
     public function cari(Request $request){
-        $cari = $request->input('cari');
+        $cari = $request->cari;
         $halaman  = 'peserta';
-        $peserta = peserta::where("nama_peserta", "LIKE", "%.$cari.%")->
-                           paginate(5);
-        return $peserta;
+        $peserta = peserta::where("nama_peserta", "LIKE", "%".$cari."%")
+                            ->orWhere('asal_sekolah', 'LIKE', '%'.$cari.'%')
+                            ->orWhere('email_peserta', 'LIKE', '%'.$cari.'%')
+                            ->orWhere('mulai', 'LIKE', '%'.$cari.'%')
+                            ->orWhere('selesai', 'LIKE', '%'.$cari.'%')
+                            ->get();
         return view('peserta.peserta', compact('halaman', 'peserta'));
     }
 }
