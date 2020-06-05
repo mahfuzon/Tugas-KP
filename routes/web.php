@@ -25,7 +25,7 @@ Route::post('/lamaran/delete/{id}', 'LampiranController@destroy');
 Route::post('/lamaran/tolak/{id}', 'LampiranController@tolak');
 Route::get('/peserta', 'pesertaController@index');
 Route::get('/peserta/export', 'pesertaController@export');
-Route::post('/peserta/cari', 'pesertaController@cari');
+
 Route::get('/peserta/edit/{id}', 'pesertaController@edit');
 Route::post('/peserta/delete/{id}', 'pesertaController@destroy');
 Route::post('/postedit/{id}', 'pesertaController@update');
