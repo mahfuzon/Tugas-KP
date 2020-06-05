@@ -51,11 +51,11 @@
                     <tbody>
                         @foreach($peserta as $p)
                         <tr>
-                            <td>{{$p->lampiran->nama_peserta}}</td>
-                            <td>{{$p->lampiran->asal_sekolah}}</td>
-                            <td>{{$p->lampiran->email_peserta}}</td>
-                            <td>{{$p->lampiran->mulai->format('d-M-Y')}}</td>
-                            <td>{{$p->lampiran->selesai->format('d-M-Y')}}</td>
+                            <td>{{$p->nama_peserta}}</td>
+                            <td>{{$p->asal_sekolah}}</td>
+                            <td>{{$p->email_peserta}}</td>
+                            <td>{{$p->mulai->format('d M Y')}}</td>
+                            <td>{{$p->selesai->format('d M Y')}}</td>
                             <td>
                                 <a href="/peserta/edit/{{$p->id}}" onclick="event.preventDefault();
                                                      document.getElementById('edit_{{$p->id}}').submit();" title="edit"
