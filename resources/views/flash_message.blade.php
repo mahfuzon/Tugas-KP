@@ -9,3 +9,15 @@
     {{Session::get('berhasil_daftar')}}
 </div>
 @endif
+
+@if(Session::has('gagal'))
+<div class="alert alert-danger">
+    {{Session::get('gagal')}}
+</div>
+@endif
+
+@if(Session::has('gagal_daftar'))
+<div class="alert alert-danger">
+    {{Session::get('gagal_daftar')}}
+</div>
+@endif

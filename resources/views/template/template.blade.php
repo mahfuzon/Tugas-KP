@@ -23,14 +23,13 @@
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <img src="{{asset('logo.png')}}" style="width:70%; height:30%;">
                 </div>
-                <div class="sidebar-brand-text mx-3">GCI</div>
             </a>
 
             <!-- Divider -->
@@ -84,14 +83,14 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/lamaran">
                                 <i class="fas fa-envelope"></i>
-                                <span>Submision</span>
+                                <span>Data Lamaran</span>
                             </a>
                         </li>
                     @else
                         <li class="nav-item">
                             <a class="nav-link" href="/lamaran">
                                 <i class="fas fa-envelope"></i>
-                                <span>Submision</span>
+                                <span>Data Lamaran</span>
                             </a>
                         </li>
                     @endif
@@ -224,7 +223,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; Garuda Cyber 2020</span>
                     </div>
                 </div>
             </footer>

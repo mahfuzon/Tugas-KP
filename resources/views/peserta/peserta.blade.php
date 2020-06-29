@@ -12,6 +12,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
         <!-- Tobol eksport excell -->
+        @if(Auth::check() && Auth()->user()->level=='admin')
         <a class="btn btn-success btn-md" href="/peserta/export" onclick="event.preventDefault();
                                                      document.getElementById('export').submit();" title="export"
                                     style="float:right;margin-bottom:20px;">
@@ -20,6 +21,7 @@
                                 <form action="/peserta/export" method="GET" id="export">
                                     @csrf
                                 </form>
+        @endif
         <!-- End -->
 
         <!-- Pencarian -->

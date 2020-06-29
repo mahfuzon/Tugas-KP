@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
 </head>
 
-<body style="background-image: url('{{asset('bg.JPG')}}'); background-size:80%;">
+<body style="background-color: green;">
     <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -44,7 +44,7 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Isikan Data Diri</h1>
                             </div>
                             @include('flash_message')
                             @include('errors')
@@ -125,7 +125,7 @@
             },
             select: function (event, ui) {
                 // Set selection
-                $('#employee_search').val(ui.item.label); // display the selected text
+                $('#asal_sekolah').val(ui.item.label); // display the selected text
                 return false;
                         }
                     });

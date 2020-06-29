@@ -164,6 +164,15 @@ return [
         'selesai' => [
             'required' => 'Tanggal Selesai Wajib Diisi',
             'date' => 'Inputkan Tanggal',
+        ], 
+
+        'email' => [
+            'required' => 'Email harus diisi',
+            'email' => "Field harus memiliki mengandung '@' ",
+        ],
+
+        'password' => [
+            'required' => 'Password harus diisi'
         ]
     ],
 

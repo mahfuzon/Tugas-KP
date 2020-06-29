@@ -345,9 +345,14 @@
                                             <h2>Selamat</h2>
                                             <h3>Anda Diterima Sebagai Peserta Magang di PT.Garuda Cyber indonesia.</h3>
                                             <h3>Silahkan datang pada hari pertama magang</h3>
-                                        @else
+                                        @endif
+                                        @if(isset($terima) && $terima == 0)
                                             <h2>Mohon Maaf</h2>
                                             <h3>Lamaran yang anda kirimkan ditolak karena tidak memenuhi syarat</h3>
+                                        @endif
+                                        @if(isset($terima) && $terima == 3)
+                                            <h2>Terima Kasih</h2>
+                                            <h3>Pendaftaran Berhasil di Lakukan</h3>
                                         @endif
                                     </div>
                                 </td>

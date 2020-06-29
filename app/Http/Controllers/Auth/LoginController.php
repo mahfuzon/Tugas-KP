@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Validator;
+use Session;
    
 class LoginController extends Controller
 {
@@ -62,8 +63,8 @@ class LoginController extends Controller
                 return redirect('/home');
             }
         }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+            Session::flash('gagal', 'Email atau Password Salah');
+            return redirect()->route('login');
         }
 
     }

@@ -18,6 +18,7 @@
             </div>
             @endif
             <div class="table-responsive">
+            @include('flash_message')
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -51,18 +52,16 @@
                             <td>
                                 @if($lam->acc == 'waiting')
                                     @if(Auth::check() && Auth()->User()->level == 'admin')
-                                        <a href="/postAccount/{{$lam->id}}" onclick="event.preventDefault();
-                                                                document.getElementById('accept_{{$lam->id}}').submit();" title="accept"
-                                            style='float:left; margin-left:0px;'>
+                                        <a href="#"title="accept" lamaran_id="{{$lam->id}}"
+                                            style='float:left; margin-left:0px;' class = "accept">
                                             <i class="fas fa-user-check" style="color:green;"></i>
                                         </a>
                                         <form action="/postAccount/{{$lam->id}}" method="POST" id="accept_{{$lam->id}}">
                                             @csrf
                                         </form>
 
-                                        <a href="/lamaran/tolak/{{$lam->id}}" lamaran_id="{{$lam->id}}" title="reject" style='float:left; margin-left:5px;'
-                                            class="" onclick="event.preventDefault();
-                                                     document.getElementById('tolak_{{$lam->id}}').submit();">
+                                        <a href="#" lamaran_id="{{$lam->id}}" title="reject" style='float:left; margin-left:5px;'
+                                            class="reject">
                                             <i class="fas fa-times-circle" style="color:red;"></i>
                                         </a>
                                         <form action="/lamaran/tolak/{{$lam->id}}" method="post" id="tolak_{{$lam->id}}">
@@ -115,7 +114,38 @@
                 }
             });
     });
-
+    $('.accept').click(function () {
+        const lamaran_id = $(this).attr('lamaran_id');
+        swal({
+                title: "Yakin?",
+                text: "Kamu Akan Menyetujui Lamaran dengan Id "+lamaran_id+"!",
+                icon: "success",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    event.preventDefault();
+                    document.getElementById('accept_'+lamaran_id).submit();
+                }
+            });
+    });
+    $('.reject').click(function () {
+        const lamaran_id = $(this).attr('lamaran_id');
+        swal({
+                title: "Yakin?",
+                text: "Kamu Akan Menolak Lamaran dengan Id "+lamaran_id+"!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    event.preventDefault();
+                    document.getElementById('tolak_'+lamaran_id).submit();
+                }
+            });
+    });
 </script>
 @endsection
 

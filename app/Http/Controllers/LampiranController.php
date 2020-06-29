@@ -28,7 +28,7 @@ class LampiranController extends Controller
             $lampiran = lampiran::where('asal_sekolah', $sekolah->nama_sekolah)->get();
             return view('lampiran.lamaran', compact('halaman','lampiran'));
         }else{
-            $lampiran = lampiran::all();
+            $lampiran = lampiran::all()->sortByDesc('created_at');
             return view('lampiran.lamaran', compact('halaman', 'lampiran'));
         }
     }
@@ -124,6 +124,8 @@ class LampiranController extends Controller
                         return redirect('/lamaran'); 
                     }
                 }else{
+                    $terima = 3;
+                    \Mail::to($lampiran->email_peserta)->send(new NotifikasiPendaftaranPeserta($terima));
                     Session::flash('berhasil_daftar', 'Pendaftaran Berhasil Komfirmasi Akan Dikirim Via Email'); 
                     return redirect('/daftar');
                 }

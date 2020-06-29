@@ -26,7 +26,7 @@ class pesertaController extends Controller
         if(Auth::check() && Auth::User()->level == 'guru'){
             $login = Auth()->User()->id;
             $sekolah = sekolah::where('user_id', $login)->firstOrFail();
-            $peserta = peserta::where('sekolah_id', $sekolah->id)->get();
+            $peserta = peserta::where('asal_sekolah', $sekolah->nama_sekolah)->get();
         }else{
             $peserta = peserta::all();
         }
@@ -57,9 +57,15 @@ class pesertaController extends Controller
     public function post($id)
     {
         $lampiran = lampiran::findOrFail($id);
-        $lampiran->acc = 'terima';
-        $lampiran->save();
+        $data_peserta = peserta::where('asal_sekolah', $lampiran->asal_sekolah)->get();
+        $jumlah_peserta = $data_peserta->count(); 
 
+        if($jumlah_peserta >= 2){
+            Session::flash('gagal_daftar', "Kuota untuk sekolah {$lampiran->asal_sekolah} sudah penuh");
+            return redirect('/lamaran');
+        }else{
+            $lampiran->acc = 'terima';
+            $lampiran->save();
         $peserta = new peserta;
         $peserta->lampiran_id = $lampiran->id;
         if(Auth::check() && Auth::user()->level == 'guru'){
@@ -77,6 +83,7 @@ class pesertaController extends Controller
 
         Session::flash('sukses_tambah', 'User berhasil dibuat');
         return redirect('/peserta');
+    }
     }
 
     /**
@@ -143,12 +150,24 @@ class pesertaController extends Controller
     public function cari(Request $request){
         $cari = $request->cari;
         $halaman  = 'peserta';
-        $peserta = peserta::where("nama_peserta", "LIKE", "%".$cari."%")
-                            ->orWhere('asal_sekolah', 'LIKE', '%'.$cari.'%')
-                            ->orWhere('email_peserta', 'LIKE', '%'.$cari.'%')
-                            ->orWhere('mulai', 'LIKE', '%'.$cari.'%')
-                            ->orWhere('selesai', 'LIKE', '%'.$cari.'%')
-                            ->get();
+        if(Auth::check() && Auth()->user()->level == 'guru'){
+            $user = Auth()->user()->id;
+            $sekolah = sekolah::where('user_id', $user)->first();
+            $peserta = peserta::where('asal_sekolah', $sekolah->nama_sekolah)
+            ->where("nama_peserta", "LIKE", "%".$cari."%")
+            ->orWhere('asal_sekolah', 'LIKE', '%'.$cari.'%')
+                                ->orWhere('email_peserta', 'LIKE', '%'.$cari.'%')
+                                ->orWhere('mulai', 'LIKE', '%'.$cari.'%')
+                                ->orWhere('selesai', 'LIKE', '%'.$cari.'%')
+            ->get();
+        }else{
+            $peserta = peserta::where("nama_peserta", "LIKE", "%".$cari."%")
+                                ->orWhere('asal_sekolah', 'LIKE', '%'.$cari.'%')
+                                ->orWhere('email_peserta', 'LIKE', '%'.$cari.'%')
+                                ->orWhere('mulai', 'LIKE', '%'.$cari.'%')
+                                ->orWhere('selesai', 'LIKE', '%'.$cari.'%')
+                                ->get();
+        }
         return view('peserta.peserta', compact('halaman', 'peserta'));
     }
 }
